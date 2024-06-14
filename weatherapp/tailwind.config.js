@@ -19,6 +19,10 @@ module.exports = {
     extend: {
       colors : {
         'bgwhite': '#F5F5F5',
+        'cardgray': '#C3D98F',
+        'tempblue' : '#85BDBF',
+        'tempred' : '#EC9798',
+        'tempgreen' : '#C3D98F'
       },
       keyframes: {
         "accordion-down": {
