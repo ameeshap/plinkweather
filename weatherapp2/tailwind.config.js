@@ -22,7 +22,7 @@ module.exports = {
       },
       colors: {
         bgwhite: '#F5F5F5',
-        cardgray: '#C3D98F',
+        cardgray: '#D9D9D9',
         tempblue: '#85BDBF',
         tempred: '#EC9798',
         tempgreen: '#C3D98F',
