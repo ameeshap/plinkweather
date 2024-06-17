@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route index element={<LocationPage />} />
           {/* <Route path="/" element={<LocationPage/>} /> */}
+          {/* <Route path="/map" element={<MapPage/>}/> */}
         </Routes>
       </Router>
     </>
