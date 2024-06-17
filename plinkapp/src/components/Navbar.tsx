@@ -1,5 +1,4 @@
 import { IoSearch } from 'react-icons/io5'
-import { IoListOutline } from 'react-icons/io5'
 import { IoLocationOutline } from 'react-icons/io5'
 import { IoEarth } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
@@ -8,8 +7,8 @@ const iconSize = 35
 
 const Navbar = () => {
   return (
-    <main className="pb-4 w-screen bg-cardwhite flex flex-grow sticky bottom-0">
-      <ul className="flex flex-row sticky w-screen justify-around">
+    <nav className="absolute bottom-0 mx-auto my-auto w-screen">
+      <ul className="min-w-screen flex flex-row justify-around bg-tempblue">
         {/* Link to Current Location */}
         <li className="">
           <IoLocationOutline color="black" size={iconSize}>
@@ -31,7 +30,7 @@ const Navbar = () => {
           </IoEarth>
         </li>
       </ul>
-    </main>
+    </nav>
   )
 }
 
