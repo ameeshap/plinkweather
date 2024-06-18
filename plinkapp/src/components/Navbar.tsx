@@ -50,7 +50,7 @@ const Navbar = (props: NavBarProps) => {
           </div>
         </li>
       </ul>
-    </main>
+    </nav>
   )
 }
 
