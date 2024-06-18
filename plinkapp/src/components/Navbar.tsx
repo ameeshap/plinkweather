@@ -16,9 +16,9 @@ const Navbar = (props: NavBarProps) => {
         {/* Link to Current Location */}
         <li className="">
           <div className="flex flex-col items-center justify-center self-center">
-            <IoLocationOutline color="black" size={iconSize}>
-              <Link to={'/'} />
-            </IoLocationOutline>
+            <Link to={'/'}>
+              <IoLocationOutline color="black" size={iconSize} />
+            </Link>
             {/* If selected include a selected indicator */}
             {props.selected === 'currentLoc' ? (
               <GoDotFill color="black" />
@@ -31,9 +31,10 @@ const Navbar = (props: NavBarProps) => {
         {/* Link to list of locations */}
         <li className="">
           <div className="flex flex-col items-center justify-center self-center">
-            <IoSearch color="black" size={iconSize}>
-              <Link to={'/'} />
-            </IoSearch>
+            <Link to={'/search'}>
+              <IoSearch color="black" size={iconSize} />
+            </Link>
+
             {/* If selected include a selected indicator */}
             {props.selected === 'search' ? <GoDotFill color="black" /> : <></>}
           </div>
@@ -42,9 +43,10 @@ const Navbar = (props: NavBarProps) => {
         {/* Link to Map of current location */}
         <li className="">
           <div className="flex flex-col items-center justify-center self-center">
-            <IoEarth color="black" size={iconSize}>
-              <Link to={'/'} />
-            </IoEarth>
+            <Link to={'/map'}>
+              <IoEarth color="black" size={iconSize} />
+            </Link>
+
             {/* If selected include a selected indicator */}
             {props.selected === 'map' ? <GoDotFill color="black" /> : <></>}
           </div>

@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar.tsx'
 
 interface LocationProps {
-  currentLoc?: boolean
+  currentLoc: boolean
   location?: string
 }
 
