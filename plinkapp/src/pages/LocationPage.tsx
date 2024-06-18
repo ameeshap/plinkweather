@@ -1,12 +1,16 @@
 import Navbar from '@/components/Navbar.tsx'
 
-const LocationPage = () => {
+interface LocationProps {
+  currentLoc: boolean
+}
+
+const LocationPage = (props: LocationProps) => {
   return (
     <>
-      <main className="flex w-screen min-h-screen flex-col items-center justify-between bg-bgwhite">
-        {/* Content for Page */}
-      </main>
-      <Navbar />
+      <div className="mx-auto flex min-h-screen flex-col bg-bgwhite">
+        {/* Content For Page */}
+        <Navbar selected="currentLoc" />
+      </div>
     </>
   )
 }
