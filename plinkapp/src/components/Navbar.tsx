@@ -11,7 +11,7 @@ interface NavBarProps {
 
 const Navbar = (props: NavBarProps) => {
   return (
-    <main className="fixed bottom-0 w-screen border-t-2 border-gray-200 bg-bgwhite py-2">
+    <nav className="fixed bottom-0 w-screen border-t-2 border-gray-200 bg-bgwhite py-2">
       <ul className="flex w-screen flex-row justify-around">
         {/* Link to Current Location */}
         <li className="">

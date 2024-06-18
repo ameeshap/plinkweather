@@ -1,7 +1,8 @@
 import Navbar from '@/components/Navbar.tsx'
 
 interface LocationProps {
-  currentLoc: boolean
+  currentLoc?: boolean
+  location?: string
 }
 
 const LocationPage = (props: LocationProps) => {
@@ -9,7 +10,12 @@ const LocationPage = (props: LocationProps) => {
     <>
       <div className="mx-auto flex min-h-screen flex-col bg-bgwhite">
         {/* Content For Page */}
-        <Navbar selected="currentLoc" />
+        {props.currentLoc ? (
+          <Navbar selected="currentLoc" />
+        ) : (
+          <Navbar selected="search" />
+          // Insert search page formatting here
+        )}
       </div>
     </>
   )
