@@ -16,6 +16,7 @@ const SearchLocationCard = (props: SearchLocationCardProps) => {
   // PUT IN FETCH HERE
   const localTemp = 32
 
+  // Functionality for color change with tempuerature
   function tempColorPicker(n: number) {
     if (n < 32) return 'bg-tempblue'
 
