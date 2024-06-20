@@ -21,7 +21,7 @@ on:
       
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v4
@@ -36,14 +36,7 @@ jobs:
       run: npm install -g pnpm@9.3
         
        # run the actions to find pnpm-lock.yaml
-    - name: Cache pnpm store
-      uses: actions/cache@v3
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
-
+       
     - name: Clear Cache 
       run: pnpm store prune 
     - name: Install dependencies 
