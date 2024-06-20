@@ -27,7 +27,7 @@ const SearchPage = () => {
         {/* Searched Location Cards */}
         {/* Default Current Location Card */}
         <section className="">
-          <SearchLocationCard location={''} />
+          <SearchLocationCard city={'Houston'} state={'TX'} />
         </section>
       </main>
       <Navbar selected="search" />
