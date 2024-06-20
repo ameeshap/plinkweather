@@ -26,6 +26,10 @@ module.exports = {
         tempblue: '#85BDBF',
         tempred: '#EC9798',
         tempgreen: '#C3D98F',
+        tempplum: '#D193D9',
+        tempceladon: '#A4CBA7',
+        temppowdblue: '#97B6CD',
+        tempperi: '#A8AFDB',
       },
       keyframes: {
         'accordion-down': {
