@@ -34,6 +34,9 @@ jobs:
    # install pnpm first as its the package manager for this application 
     - name: install pnpm 
       run: npm install -g pnpm@9.3
+      
+    - name: add to pnpm to path 
+      run: echo "::add-path::$(npm bin -g)"
         
        # run the actions to find pnpm-lock.yaml
        
