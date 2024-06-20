@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { useState } from 'react'
+import { ReactEventHandler, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { CityData, findFromCityStateProvince } from 'city-timezones'
 
 interface SearchLocationCardProps {
@@ -26,6 +27,10 @@ const SearchLocationCard = (props: SearchLocationCardProps) => {
     return 'bg-tempblue'
   }
 
+  function locationClickHandler(e: any) {
+    console.log('Selected: ', props.city)
+  }
+
   return (
     <div
       className={
@@ -33,12 +38,12 @@ const SearchLocationCard = (props: SearchLocationCardProps) => {
         ' ' +
         tempColorPicker(localTemp)
       }
+      onClick={(event) => locationClickHandler(event)}
     >
       <div className="flex flex-col">
         <p className="pt-2 text-3xl font-semibold italic">{props.city}</p>
         <p className="">{localTime.toFormat('hh:mm a')}</p>
       </div>
-
       <p className="pr-5 text-[3rem] font-semibold">{localTemp}&deg;</p>
     </div>
   )

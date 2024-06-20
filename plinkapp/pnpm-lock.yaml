@@ -41,15 +41,12 @@ importers:
       react-icons:
         specifier: ^5.2.1
         version: 5.2.1(react@18.3.1)
-<<<<<<< HEAD
-      react-select-async-paginate:
-        specifier: ^0.7.4
-        version: 0.7.4(@types/react@18.3.3)(react-select@5.8.0(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-=======
       react-leaflet:
         specifier: ^4.2.1
         version: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
+      react-select-async-paginate:
+        specifier: ^0.7.4
+        version: 0.7.4(@types/react@18.3.3)(react-select@5.8.0(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.3.0
@@ -60,15 +57,12 @@ importers:
         specifier: ^4.5.2
         version: 4.5.2(@types/react@18.3.3)(react@18.3.1)
     devDependencies:
-<<<<<<< HEAD
-      '@types/luxon':
-        specifier: ^3.4.2
-        version: 3.4.2
-=======
       '@types/leaflet':
         specifier: ^1.9.12
         version: 1.9.12
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
+      '@types/luxon':
+        specifier: ^3.4.2
+        version: 3.4.2
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.3
@@ -638,7 +632,12 @@ packages:
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
-<<<<<<< HEAD
+  '@types/geojson@7946.0.14':
+    resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
+
+  '@types/leaflet@1.9.12':
+    resolution: {integrity: sha512-BK7XS+NyRI291HIo0HCfE18Lp8oA30H1gpi1tf0mF3TgiCEzanQjOqNZ4x126SXzzi2oNSZhZ5axJp1k0iM6jg==}
+
   '@types/luxon@3.4.2':
     resolution: {integrity: sha512-TifLZlFudklWlMBfhubvgqTXRzLDI5pCbGa4P8a3wPyUQSW+1xQ5eDsreP9DWHX3tjq1ke96uYG/nwundroWcA==}
 
@@ -647,16 +646,6 @@ packages:
 
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
-=======
-  '@types/geojson@7946.0.14':
-    resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
-
-  '@types/leaflet@1.9.12':
-    resolution: {integrity: sha512-BK7XS+NyRI291HIo0HCfE18Lp8oA30H1gpi1tf0mF3TgiCEzanQjOqNZ4x126SXzzi2oNSZhZ5axJp1k0iM6jg==}
-
-  '@types/node@20.14.5':
-    resolution: {integrity: sha512-aoRR+fJkZT2l0aGOJhuA8frnCSoNX6W7U2mpNq63+BxBIj5BQFt8rHy627kijCmm63ijdSdwvGgpUsU6MBsZZA==}
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
 
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
@@ -1217,13 +1206,11 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-<<<<<<< HEAD
   krustykrab@1.0.0:
     resolution: {integrity: sha512-cn9vpa5YLWF8WtgCzrWu9nII9O2AB5gXMpbrAPuDjlytPVdopnPBBAGyoa6101EHIy2ZyII+w0BeG4mWc5RyEg==}
-=======
+
   leaflet@1.9.4:
     resolution: {integrity: sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==}
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -1528,17 +1515,15 @@ packages:
     peerDependencies:
       react: '*'
 
-<<<<<<< HEAD
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-=======
+
   react-leaflet@4.2.1:
     resolution: {integrity: sha512-p9chkvhcKrWn/H/1FFeVSqLdReGwn2qmiobOQGO3BifX+/vV/39qhY8dGqbdcPh1e6jxh/QHriLXr7a4eLFK4Q==}
     peerDependencies:
       leaflet: ^1.9.0
       react: ^18.0.0
       react-dom: ^18.0.0
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
 
   react-router-dom@6.23.1:
     resolution: {integrity: sha512-utP+K+aSTtEdbWpC+4gxhdlPFwuEfDKq8ZrPFU65bbRJY+l706qjR7yaidBpo3MSeA/fzwbXWbKBI6ftOnP3OQ==}
@@ -1918,10 +1903,6 @@ snapshots:
   '@babel/parser@7.24.7':
     dependencies:
       '@babel/types': 7.24.7
-<<<<<<< HEAD
-=======
-    optional: true
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
 
   '@babel/runtime@7.24.7':
     dependencies:
@@ -2321,19 +2302,15 @@ snapshots:
 
   '@types/estree@1.0.5': {}
 
-<<<<<<< HEAD
-  '@types/luxon@3.4.2': {}
-
-  '@types/node@20.14.6':
-=======
   '@types/geojson@7946.0.14': {}
 
   '@types/leaflet@1.9.12':
     dependencies:
       '@types/geojson': 7946.0.14
 
-  '@types/node@20.14.5':
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
+  '@types/luxon@3.4.2': {}
+
+  '@types/node@20.14.6':
     dependencies:
       undici-types: 5.26.5
 
@@ -2951,11 +2928,9 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-<<<<<<< HEAD
   krustykrab@1.0.0: {}
-=======
+
   leaflet@1.9.4: {}
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
 
   levn@0.4.1:
     dependencies:
@@ -3168,16 +3143,14 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-<<<<<<< HEAD
   react-is@16.13.1: {}
-=======
+
   react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@react-leaflet/core': 2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       leaflet: 1.9.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
->>>>>>> fe58cd27b79285082ac729acc92e0b80f81dbf7a
 
   react-router-dom@6.23.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
