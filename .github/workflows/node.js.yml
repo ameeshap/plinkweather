@@ -26,22 +26,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js '20.x'
-      uses: actions/setup-node@v3
+    - uses: pnpm/action-setup@v4
       with:
-        node-version: '20.x'
-        cache: 'pnpm'
-
-   # install pnpm first as its the package manager for this application 
-    - name: install pnpm 
-      run: npm install -g pnpm@9.3
-      
-    - name: add to pnpm to path 
-      run: echo "::add-path::$(npm bin -g)"
+        version: 8
+        run_install: |
+          - recursive: true
+            args: [--frozen-lockfile, --strict-peer-dependencies]
+          - args: [--global, gulp, prettier, typescript]'
         
        # run the actions to find pnpm-lock.yaml
-       
-    - name: Clear Cache 
-      run: pnpm store prune 
     - name: Install dependencies 
       run: pnpm ci
     - name: building Application
