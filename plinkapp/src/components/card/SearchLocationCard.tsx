@@ -41,10 +41,12 @@ const SearchLocationCard = (props: SearchLocationCardProps) => {
       onClick={(event) => locationClickHandler(event)}
     >
       <div className="flex flex-col">
-        <p className="pt-2 text-3xl font-semibold italic">{props.city}</p>
-        <p className="">{localTime.toFormat('hh:mm a')}</p>
+        <p className="flex pt-2 text-3xl font-semibold italic">{props.city}</p>
+        <p className="">{localTime.toFormat('h:mm a')}</p>
       </div>
-      <p className="pr-5 text-[3rem] font-semibold">{localTemp}&deg;</p>
+      <p className="flex self-center pr-5 text-[3rem] font-semibold">
+        {localTemp}&deg;
+      </p>
     </div>
   )
 }

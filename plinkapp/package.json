@@ -22,8 +22,8 @@
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
-    "react-select-async-paginate": "^0.7.4",
     "react-leaflet": "^4.2.1",
+    "react-select-async-paginate": "^0.7.4",
     "sum": "^0.1.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/luxon": "^3.4.2",
     "@types/leaflet": "^1.9.12",
+    "@types/luxon": "^3.4.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
@@ -50,7 +50,8 @@
     "react-router-dom": "^6.23.1",
     "tailwindcss": "^3.4.4",
     "ts-jest": "^29.1.5",
-    "typescript": "^5.4.5",
-    "vite": "^5.3.1"
+    "typescript": "^5.5.2",
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0"
   }
 }
