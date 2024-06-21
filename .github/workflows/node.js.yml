@@ -33,9 +33,8 @@ jobs:
       with:
         version: 9.3
         run_install: |
-          - recursive: true
-            args: [--frozen-lockfile, --strict-peer-dependencies]
-          - args: [--global, gulp, prettier, typescript]'
+          pnpm install --frozen-lockfile --strict-peer-dependencies
+          pnpm add -g gulp prettier typescript'
         
        # run the actions to find pnpm-lock.yaml
     - name: Install dependencies 
