@@ -1,13 +1,12 @@
-import Navbar from '@/components/Navbar'
-import SearchLocationCard from '@/components/card/SearchLocationCard'
 import { useEffect, useState } from 'react'
-import { Loader } from '@googlemaps/js-api-loader'
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from 'use-places-autocomplete'
 import useOnclickOutside from 'react-cool-onclickoutside'
-
+import { Loader } from '@googlemaps/js-api-loader'
+import Navbar from '@/components/Navbar'
+import SearchLocationCard from '@/components/card/SearchLocationCard'
 import { IoArrowBack } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
@@ -29,7 +28,7 @@ const PlacesAutocomplete = ({ onSelect }: any) => {
     clearSuggestions()
   })
 
-  const handleInput = (e) => {
+  const handleInput = (e: any) => {
     setValue(e.target.value)
   }
 
@@ -54,22 +53,30 @@ const PlacesAutocomplete = ({ onSelect }: any) => {
       } = suggestion
 
       return (
-        <li key={place_id} onClick={handleSelect(suggestion)}>
+        <li
+          key={place_id}
+          onClick={handleSelect(suggestion)}
+          className="cursor-pointer p-2 hover:bg-gray-200"
+        >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
       )
     })
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="relative w-full">
       <input
         value={value}
         onChange={handleInput}
         disabled={!ready}
         placeholder="Search City or Address"
-        className="ml-3 flex flex-grow bg-slate-400 font-semibold placeholder-gray-700"
+        className="w-full rounded-t-lg bg-slate-400 p-3 font-semibold placeholder-gray-700"
       />
-      {status === 'OK' && <ul>{renderSuggestions()}</ul>}
+      {status === 'OK' && (
+        <ul className="absolute z-10 w-full rounded-b-lg border border-gray-300 bg-white shadow-lg">
+          {renderSuggestions()}
+        </ul>
+      )}
     </div>
   )
 }
@@ -85,12 +92,12 @@ const SearchPage = () => {
   const [isGoogleMapsLoaded, setIsGoogleMapsLoaded] = useState(false)
 
   useEffect(() => {
-    loader.importLibrary('places').then(() => {
+    loader.load().then(() => {
       setIsGoogleMapsLoaded(true)
     })
   }, [loader])
 
-  const handleSelect = (coordinates) => {
+  const handleSelect = (coordinates: any) => {
     console.log('Selected coordinates:', coordinates)
   }
 
@@ -106,7 +113,7 @@ const SearchPage = () => {
             </Link>
           </div>
           {/* Search Bar */}
-          <div className="mr-2 flex h-12 flex-grow items-center rounded-2xl bg-slate-400 text-black">
+          <div className="relative mr-2 flex flex-grow items-center rounded-2xl bg-slate-400 text-black">
             {isGoogleMapsLoaded ? (
               <PlacesAutocomplete onSelect={handleSelect} />
             ) : (
