@@ -70,7 +70,7 @@ const PlacesAutocomplete = ({ onSelect }: any) => {
         onChange={handleInput}
         disabled={!ready}
         placeholder="Search City or Address"
-        className="w-full rounded-t-lg bg-slate-400 p-3 font-semibold placeholder-gray-700"
+        className="w-full rounded-lg bg-slate-400 p-3 font-semibold placeholder-gray-700"
       />
       {status === 'OK' && (
         <ul className="absolute z-10 w-full rounded-b-lg border border-gray-300 bg-white shadow-lg">
@@ -92,7 +92,7 @@ const SearchPage = () => {
   const [isGoogleMapsLoaded, setIsGoogleMapsLoaded] = useState(false)
 
   useEffect(() => {
-    loader.load().then(() => {
+    loader.importLibrary('places').then(() => {
       setIsGoogleMapsLoaded(true)
     })
   }, [loader])
