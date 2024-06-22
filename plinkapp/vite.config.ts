@@ -8,9 +8,13 @@ export default defineConfig(({ mode }) => {
   return {
     define: {
       'process.env.OPENWEATHER_API_KEY': JSON.stringify(
-        env.OPENWEATHER_API_KEY
+        env.VITE_OPENWEATHER_API_KEY
+      ),
+      'process.env.GOOGLEMAPS_API_KEY': JSON.stringify(
+        env.VITE_GOOGLEMAPS_API_KEY
       ),
     },
+
     plugins: [react()],
     resolve: {
       alias: {

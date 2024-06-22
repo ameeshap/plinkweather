@@ -1,7 +1,7 @@
-import { DateTime } from 'luxon'
 import { ReactEventHandler, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CityData, findFromCityStateProvince } from 'city-timezones'
+import { DateTime } from 'luxon'
+import { findFromCityStateProvince } from 'city-timezones'
 
 interface SearchLocationCardProps {
   // Variables for location
