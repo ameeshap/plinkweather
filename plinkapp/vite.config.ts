@@ -30,6 +30,10 @@ export default defineConfig(({ mode }) => {
       environment: "jsdom",
       css: true,
       setupFiles: "./src/test/setup.ts"
+    },
+    coverage: {
+      provider: 'c8',
+      reporter: ['text', 'json', 'html'],
     }
   }
 })
