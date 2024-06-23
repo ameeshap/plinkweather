@@ -2,11 +2,12 @@ import { GoDotFill } from 'react-icons/go'
 import { IoSearch } from 'react-icons/io5'
 import { IoLocationOutline } from 'react-icons/io5'
 import { IoEarth } from 'react-icons/io5'
+import { IoSettingsSharp } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
 const iconSize = 35
 interface NavBarProps {
-  selected?: 'currentLoc' | 'search' | 'map'
+  selected?: 'currentLoc' | 'search' | 'map' | 'settings'
 }
 
 const Navbar = (props: NavBarProps) => {
@@ -49,6 +50,21 @@ const Navbar = (props: NavBarProps) => {
 
             {/* If selected include a selected indicator */}
             {props.selected === 'map' ? <GoDotFill color="black" /> : <></>}
+          </div>
+        </li>
+        {/* Link to settings*/}
+        <li className="">
+          <div className="flex flex-col items-center justify-center self-center">
+            <Link to={'/settings'}>
+              <IoSettingsSharp color="black" size={iconSize} />
+            </Link>
+
+            {/* If selected include a selected indicator */}
+            {props.selected === 'settings' ? (
+              <GoDotFill color="black" />
+            ) : (
+              <></>
+            )}
           </div>
         </li>
       </ul>
