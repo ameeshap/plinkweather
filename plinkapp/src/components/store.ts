@@ -28,7 +28,7 @@ type locationState = {
   removeLocation: (city: string) => void
   updateLocationData: (city: string) => void
   updateAllLocationData: () => void
-  fetchCurrentLocation: () => void
+  fetchCurrentLocation: () => Promise<locationData | null>
 }
 
 // ? Function Definitions
@@ -68,6 +68,29 @@ const fetchCityState = async (latitude: number, longitude: number) => {
     }
   }
   return { city, state }
+}
+
+const fetchLocationData = async (
+  latitude: number,
+  longitude: number
+): Promise<locationData> => {
+  const weatherData = await fetchWeatherData(
+    latitude,
+    longitude,
+    OPENWEATHER_API_KEY!
+  )
+  const { city, state } = await fetchCityState(latitude, longitude)
+  return {
+    city,
+    state,
+    lat: latitude,
+    long: longitude,
+    temp: Math.floor(weatherData.main.temp),
+    wind: Math.floor(weatherData.wind.speed),
+    humidity: weatherData.main.humidity,
+    feels_like: Math.floor(weatherData.main.feels_like),
+    visibility: weatherData.visibility,
+  }
 }
 
 const locationStore: StateCreator<
@@ -139,42 +162,35 @@ const locationStore: StateCreator<
 
     set({ locations: updatedLocations })
   },
-  fetchCurrentLocation: () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords
+  fetchCurrentLocation: async (): Promise<locationData | null> => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const { latitude, longitude } = position.coords
 
-          try {
-            const weatherData = await fetchWeatherData(
-              latitude,
-              longitude,
-              OPENWEATHER_API_KEY!
-            )
-            const { city, state } = await fetchCityState(latitude, longitude)
-            const currentLocation = {
-              city,
-              state,
-              lat: latitude,
-              long: longitude,
-              temp: Math.floor(weatherData.main.temp),
-              wind: Math.floor(weatherData.wind.speed),
-              humidity: weatherData.main.humidity,
-              feels_like: Math.floor(weatherData.main.feels_like),
-              visibility: weatherData.visibility,
+            try {
+              const currentLocation = await fetchLocationData(
+                latitude,
+                longitude
+              )
+              set({ currentLoc: currentLocation })
+              resolve(currentLocation)
+            } catch (error) {
+              console.error('Error:', error)
+              resolve(null)
             }
-            set({ currentLoc: currentLocation })
-          } catch (error) {
-            console.error('Error:', error)
+          },
+          (error) => {
+            console.error('Error getting geolocation: ', error)
+            resolve(null)
           }
-        },
-        (error) => {
-          console.error('Error getting geolocation: ', error)
-        }
-      )
-    } else {
-      console.error('Geolocation is not supported by this browser.')
-    }
+        )
+      } else {
+        console.error('Geolocation is not supported by this browser.')
+        resolve(null)
+      }
+    })
   },
 })
 

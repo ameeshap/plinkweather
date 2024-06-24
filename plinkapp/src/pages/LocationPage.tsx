@@ -1,18 +1,18 @@
 import Navbar from '@/components/Navbar.tsx'
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 import FeatureWeatherCard from '@/components/FeatureWeatherCard'
 import LocationCard from '@/components/LocationCard'
 import Banner from '@/components/Banner'
 import MapCard from '@/components/card/MapCard'
 
-// Type and data from localStorage store
+// ? Type and data from localStorage store
 import { locationData } from '@/components/store'
 import useLocationStore from '@/components/store'
 
 interface LocationProps {
   currentLoc: boolean
-  location?: locationData
 }
 
 const LocationPage = (props: LocationProps) => {
@@ -23,12 +23,19 @@ const LocationPage = (props: LocationProps) => {
     type: '',
     onClose: () => {},
   })
-  const [isLoading, setIsLoading] = useState(true)
-
   const fetchCurrentLoc = useLocationStore(
     (state) => state.fetchCurrentLocation
   )
-  const currentLocation = useLocationStore((state) => state.currentLoc)
+  const fetchLocationData = useLocationStore((state) => state.fetchLocationData)
+  var currentLocation = useLocationStore((state) => state.currentLoc)
+
+  // ? Variable to check if API calls are done
+  const [isLoading, setIsLoading] = useState(true)
+  // ? Pulls location data from different city if currentLoc is false
+  if (!props.currentLoc) {
+    const { cityName } = useParams<{ cityName: string }>()
+    fetchLocationData(cityName as string)
+  }
 
   const showError = () => {
     setBannerProps({
