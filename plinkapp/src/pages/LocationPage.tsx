@@ -25,6 +25,14 @@ const LocationPage = (props: LocationProps) => {
   })
   const [latitude, setLatitude] = useState<number | null>(null)
   const [longitude, setLongitude] = useState<number | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  const locations = useLocationStore((state) => state.locations)
+  const addLocation = useLocationStore((state) => state.addLocation)
+  const fetchCurrentLoc = useLocationStore(
+    (state) => state.fetchCurrentLocation
+  )
+  const currentLocation = useLocationStore((state) => state.currentLoc)
 
   const showError = () => {
     setBannerProps({
@@ -36,46 +44,22 @@ const LocationPage = (props: LocationProps) => {
   }
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords
-          setLatitude(latitude)
-          setLongitude(longitude)
-          // Add the location to the store
-          const newLocation = {
-            city: '',
-            state: '',
-            lat: latitude,
-            long: longitude,
-            temp: 0,
-            wind: 0,
-            humidity: 0,
-            feels_like: 0,
-            visibility: 0,
-          }
-          addLocation(newLocation)
-        },
-        (error) => {
-          console.error('Error getting geolocation: ', error)
-        }
-      )
-    } else {
-      console.error('Geolocation is not supported by this browser.')
+    const fetchLocationData = async () => {
+      await fetchCurrentLoc()
+      setIsLoading(false)
     }
-  }, [])
+    fetchLocationData()
+  }, [fetchCurrentLoc])
 
-  useEffect(() => {
-    // Update the location data using the store
-    if (latitude && longitude) {
-      // Assuming there's only one location in the store for simplicity
-      if (locations.length > 0) {
-        updateLocationData(locations[0].city)
-      }
-    }
-  }, [latitude, longitude, locations, updateLocationData])
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
-  const currentLocation = locations[0]
+  if (!currentLocation) {
+    return <div>Error: Could not fetch current location</div>
+  }
+
+  // const currentLocation = locations[0]
 
   return (
     <>
