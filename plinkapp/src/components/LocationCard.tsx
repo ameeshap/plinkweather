@@ -1,5 +1,9 @@
 import React from 'react'
 
+const apiKey = '8679a3e4f001bb9961c1810bb6e10426'
+const API_url =
+  'https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}'
+
 interface WeatherCardProps {
   city: string
   temp: number
@@ -20,10 +24,10 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city, temp, img_src }) => {
       }}
     >
       <h2 className="card-title font-inter">{city} </h2>
-      <figure className="w-133 h-133">
+      <figure >
         <img
           src={img_src}
-          className="h-full w-full object-cover"
+          className="h-full w-full"
           style={{
             width: '170px',
             height: '170px',
