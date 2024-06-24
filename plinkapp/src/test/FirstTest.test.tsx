@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import FirstTest from "../components/card/FirstTest";
 import {it, expect, vi} from 'vitest';
 import MapCard from '../components/card/MapCard'
+import SearchLocationCard  from '../components/card/SearchLocationCard';
 
 //fake test 
 it("should have hello world", ()=> {
@@ -10,6 +11,7 @@ it("should have hello world", ()=> {
     expect(message).toBeVisible();
 });
 
+/* testing Map Card */
 const mockGeolocation = {
     getCurrentPosition: vi.fn().mockImplementationOnce((success) =>
       Promise.resolve(
@@ -80,5 +82,53 @@ it('should show an error if geolocation is not supported', async () => {
     })
     
     consoleErrorSpy.mockRestore()
+})
+/* ending testing Map Card */
+
+
+
+
+/* start testing location card  */
+vi.mock('luxon', () => {
+  return {
+    DateTime: {
+      local: () => ({
+        setZone: () => ({
+          toFormat: () => '12:00 PM',
+        }),
+      }),
+    },
+  }
+})
+
+vi.mock('city-timezones', () => {
+  return {
+    findFromCityStateProvince: () => [{ timezone: 'America/New_York' }],
+  }
+})
+
+describe('SearchLocationCard', () => {
+  it('renders the city name and temperature', () => {
+    render(<SearchLocationCard city="New York" state="NY" />)
+    expect(screen.getByText('New York')).toBeInTheDocument()
+    expect(screen.getByText('32°')).toBeInTheDocument()
+  })
+})
+
+it('renders the local time', () => {
+  render(<SearchLocationCard city="New York" state="NY" />)
+  expect(screen.getByText('12:00 PM')).toBeInTheDocument()
+})
+
+it('test background color with temperature ', () => {
+  const {container} = render(<SearchLocationCard city="New York" state="NY" /> )
+  expect(container.firstChild).toHaveClass('bg-tempblue')
+})
+
+it('test click events', () => {
+  console.log = vi.fn()
+  render(<SearchLocationCard city="New York" state="NY" />)
+  fireEvent.click(screen.getByText('New York'))
+  expect(console.log).toHaveBeenCalledWith('Selected: ', 'New York')
 })
 
