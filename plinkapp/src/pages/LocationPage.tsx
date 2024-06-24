@@ -23,12 +23,8 @@ const LocationPage = (props: LocationProps) => {
     type: '',
     onClose: () => {},
   })
-  const [latitude, setLatitude] = useState<number | null>(null)
-  const [longitude, setLongitude] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  const locations = useLocationStore((state) => state.locations)
-  const addLocation = useLocationStore((state) => state.addLocation)
   const fetchCurrentLoc = useLocationStore(
     (state) => state.fetchCurrentLocation
   )
