@@ -1,7 +1,7 @@
 import LocationPage from '@/pages/LocationPage'
 import SearchPage from '@/pages/SearchPage'
 import MapPage from '@/pages/MapPage'
-// import ErrorPage from './pages/ErrorPage'
+import ErrorPage from './pages/ErrorPage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 import './index.css'
@@ -19,7 +19,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/settings" element={<SettingsPage />} />
-          {/* <Route path="*" element={<ErrorPage />} /> */}
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </>

@@ -12,7 +12,7 @@ import Banner from '@/components/Banner'
 //import './index.css'
 import MapCard from '@/components/card/MapCard'
 
-const apiKey = '8679a3e4f001bb9961c1810bb6e10426'
+const apiKey = process.env.OPENWEATHER_API_KEY
 
 interface LocationProps {
   currentLoc: boolean
@@ -20,20 +20,21 @@ interface LocationProps {
 }
 
 const LocationPage = (props: LocationProps) => {
+  // Controlling weather alerts
   const [showBanner, setShowBanner] = useState(false)
   const [bannerProps, setBannerProps] = useState({
     message: '',
     type: '',
     onClose: () => {},
   })
-  const [latitude, setLatitude] = useState<number | null>(null);
-const [longitude, setLongitude] = useState<number | null>(null);
-  const [temp, setTemp] = useState<number | null>(null);
-  const [wind, setWind] = useState<number | null>(null);
+  const [latitude, setLatitude] = useState<number | null>(null)
+  const [longitude, setLongitude] = useState<number | null>(null)
+  const [temp, setTemp] = useState<number | null>(null)
+  const [wind, setWind] = useState<number | null>(null)
   const [cityName, setCityName] = useState('')
   const [humidity, setHumidity] = useState(null)
-  const [feels_like, setFeelsLike] = useState<number | null>(null);
-  const [vis, setVisibility] = useState<number | null>(null);
+  const [feels_like, setFeelsLike] = useState<number | null>(null)
+  const [vis, setVisibility] = useState<number | null>(null)
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -98,7 +99,7 @@ const [longitude, setLongitude] = useState<number | null>(null);
           <LocationCard
             city={cityName}
             img_src="../src/assets/full_sun.svg"
-            temp={temp||0}
+            temp={temp || 0}
           />
 
           <FeatureWeatherCard
