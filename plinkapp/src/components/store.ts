@@ -42,71 +42,6 @@ type settingsState = {
   setSevereWeather: (setting: boolean) => void
 }
 
-// ? SVG code definitions
-export const weatherIcons = new Map<number, string>()
-
-const weatherIconsDef: { [key: number]: string } = {
-  200: '../src/assets/cloud_lightning_heavyrain.svg',
-  201: '../src/assets/cloud_lightning_heavyrain.svg',
-  202: '../src/assets/cloud_lightning_heavyrain.svg',
-  210: '../src/assets/cloud_lightning_heavyrain.svg',
-  211: '../src/assets/cloud_lightning_heavyrain.svg',
-  212: '../src/assets/cloud_lightning_heavyrain.svg',
-  221: '../src/assets/cloud_lightning_heavyrain.svg',
-  230: '../src/assets/cloud_lightning_heavyrain.svg',
-  231: '../src/assets/cloud_lightning_heavyrain.svg',
-  232: '../src/assets/cloud_lightning_heavyrain.svg',
-  300: '../src/assets/3_waterdrop.svg',
-  301: '../src/assets/3_waterdrop.svg',
-  302: '../src/assets/3_waterdrop.svg',
-  310: '../src/assets/3_waterdrop.svg',
-  311: '../src/assets/3_waterdrop.svg',
-  312: '../src/assets/3_waterdrop.svg',
-  313: '../src/assets/3_waterdrop.svg',
-  314: '../src/assets/3_waterdrop.svg',
-  321: '../src/assets/3_waterdrop.svg',
-  500: '../src/assets/cloud_sing_waterdrop.svg',
-  501: '../src/assets/cloud_sing_waterdrop.svg',
-  502: '../src/assets/cloud_heavyrain.svg',
-  503: '../src/assets/cloud_heavyrain.svg',
-  504: '../src/assets/cloud_heavyrain.svg',
-  511: '../src/assets/cloud_heavyrain.svg',
-  520: '../src/assets/cloud_sing_waterdrop.svg',
-  521: '../src/assets/cloud_sing_waterdrop.svg',
-  522: '../src/assets/cloud_heavyrain.svg',
-  531: '../src/assets/cloud_heavyrain.svg',
-  600: '../src/assets/cloud_sing_snowflake.svg',
-  601: '../src/assets/cloud_sing_snowflake.svg',
-  602: '../src/assets/cloud_3_snowflake.svg',
-  611: '../src/assets/cloud_3_snowflake.svg',
-  612: '../src/assets/cloud_sing_snowflake.svg',
-  613: '../src/assets/cloud_3_snowflake.svg',
-  615: '../src/assets/cloud_sing_snowflake.svg',
-  616: '../src/assets/cloud_sing_snowflake.svg',
-  620: '../src/assets/cloud_sing_snowflake.svg',
-  621: '../src/assets/cloud_3_snowflake.svg',
-  622: '../src/assets/cloud_3_snowflake.svg',
-  701: '../src/assets/waves.svg',
-  711: '../src/assets/waves.svg',
-  721: '../src/assets/waves.svg',
-  731: '../src/assets/waves.svg',
-  741: '../src/assets/waves.svg',
-  751: '../src/assets/waves.svg',
-  761: '../src/assets/waves.svg',
-  762: '../src/assets/waves.svg',
-  771: '../src/assets/waves.svg',
-  781: '../src/assets/tornado.svg',
-  800: '../src/assets/full_sun.svg',
-  801: '../src/assets/cloud_sun.svg',
-  802: '../src/assets/cloud_sun.svg',
-  803: '../src/assets/cloud_sun.svg',
-  804: '../src/assets/cloud.svg',
-}
-
-Object.entries(weatherIconsDef).forEach(([key, value]) => {
-  weatherIcons.set(parseInt(key), value)
-})
-
 // ? Function Definitions
 setDefaults({
   key: GOOGLEMAPS_API_KEY,
@@ -152,39 +87,46 @@ const fetchLatLngFromCity = async (city: string) => {
   return { latitude: location.lat, longitude: location.lng }
 }
 
-const fetchLocationData = async (
+export const fetchLocationData = async (
+  city?: string,
   latitude?: number,
-  longitude?: number,
-  city?: string
+  longitude?: number
 ): Promise<locationData> => {
-  let lat: number
-  let long: number
-  let cityState: { city: string; state: string }
-
-  if (latitude !== undefined && longitude !== undefined) {
-    lat = latitude
-    long = longitude
-    cityState = await fetchCityState(lat, long)
-  } else if (city) {
-    const location = await fetchLatLngFromCity(city)
-    lat = location.latitude
-    long = location.longitude
-    cityState = { city, state: '' } // You might want to fetch the state as well
+  if (city) {
+    const { latitude: lat, longitude: long } = await fetchLatLngFromCity(city)
+    const weatherData = await fetchWeatherData(lat, long, OPENWEATHER_API_KEY!)
+    const { city: fetchedCity, state } = await fetchCityState(lat, long)
+    return {
+      city: fetchedCity,
+      state,
+      lat,
+      long,
+      temp: Math.floor(weatherData.main.temp),
+      wind: Math.floor(weatherData.wind.speed),
+      humidity: weatherData.main.humidity,
+      feels_like: Math.floor(weatherData.main.feels_like),
+      visibility: weatherData.visibility,
+    }
+  } else if (latitude !== undefined && longitude !== undefined) {
+    const weatherData = await fetchWeatherData(
+      latitude,
+      longitude,
+      OPENWEATHER_API_KEY!
+    )
+    const { city, state } = await fetchCityState(latitude, longitude)
+    return {
+      city,
+      state,
+      lat: latitude,
+      long: longitude,
+      temp: Math.floor(weatherData.main.temp),
+      wind: Math.floor(weatherData.wind.speed),
+      humidity: weatherData.main.humidity,
+      feels_like: Math.floor(weatherData.main.feels_like),
+      visibility: weatherData.visibility,
+    }
   } else {
-    throw new Error('Either latitude/longitude or city must be provided')
-  }
-
-  const weatherData = await fetchWeatherData(lat, long, OPENWEATHER_API_KEY!)
-  return {
-    city: cityState.city,
-    state: cityState.state,
-    lat,
-    long,
-    temp: Math.floor(weatherData.main.temp),
-    wind: Math.floor(weatherData.wind.speed),
-    humidity: weatherData.main.humidity,
-    feels_like: Math.floor(weatherData.main.feels_like),
-    visibility: weatherData.visibility,
+    throw new Error('Either latitude/longitude or city name must be provided')
   }
 }
 
@@ -266,6 +208,7 @@ const locationStore: StateCreator<
 
             try {
               const currentLocation = await fetchLocationData(
+                undefined,
                 latitude,
                 longitude
               )

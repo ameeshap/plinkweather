@@ -1,18 +1,19 @@
 import Navbar from '@/components/Navbar.tsx'
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 import FeatureWeatherCard from '@/components/FeatureWeatherCard'
 import LocationCard from '@/components/LocationCard'
 import Banner from '@/components/Banner'
 import MapCard from '@/components/card/MapCard'
 
-// Type and data from localStorage store
-import { locationData } from '@/components/store'
+// ? Type and data from localStorage store
+import { locationData, fetchLocationData } from '@/components/store'
 import useLocationStore from '@/components/store'
 
 interface LocationProps {
   currentLoc: boolean
-  location?: locationData
+  city?: string
 }
 
 const LocationPage = (props: LocationProps) => {
@@ -23,12 +24,16 @@ const LocationPage = (props: LocationProps) => {
     type: '',
     onClose: () => {},
   })
-  const [isLoading, setIsLoading] = useState(true)
-
   const fetchCurrentLoc = useLocationStore(
     (state) => state.fetchCurrentLocation
   )
-  const currentLocation = useLocationStore((state) => state.currentLoc)
+
+  var currentLocation = useLocationStore((state) => state.currentLoc)
+  const [selectedLocation, setSelectedLocation] = useState<locationData>()
+
+  // ? Variable to check if API calls are done
+  const [isLoading, setIsLoading] = useState(true)
+  // ? Pulls location data from different city if currentLoc is false
 
   const showError = () => {
     setBannerProps({
@@ -40,11 +45,17 @@ const LocationPage = (props: LocationProps) => {
   }
 
   useEffect(() => {
-    const fetchLocationData = async () => {
-      await fetchCurrentLoc()
-      setIsLoading(false)
+    const fetchLocation = async () => {
+      if (props.currentLoc) {
+        await fetchCurrentLoc()
+        setIsLoading(false)
+      } else {
+        const value = await fetchLocationData(props.city)
+        setSelectedLocation(value)
+        setIsLoading(false)
+      }
     }
-    fetchLocationData()
+    fetchLocation()
   }, [fetchCurrentLoc])
 
   if (isLoading) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import HourlyForecastFront, { Hour } from './HourlyForecastFront'
-import { weatherIcons } from './store'
+import weatherIcons from './weatherIcons'
 
 const HourlyWeather: React.FC = () => {
   const [hours, setHours] = useState<Hour[]>([])

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+
+import weatherIcons from './weatherIcons'
 import WeeklyForecastFront, {
   WeatherDay,
 } from '@/components/WeeklyForecastFront'
@@ -8,63 +10,6 @@ const WeeklyWeather: React.FC = () => {
   const [forecast, setDays] = useState<WeatherDay[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-
-  const dataStructure = new Map()
-  dataStructure.set(201, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(202, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(211, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(212, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(221, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(232, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(200, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(210, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(230, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(231, '../src/assets/cloud_lightning_heavyrain.svg')
-  dataStructure.set(300, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(301, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(302, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(310, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(311, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(312, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(313, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(314, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(321, '../src/assets/3_waterdrop.svg')
-  dataStructure.set(500, '../src/assets/cloud_sing_waterdrop.svg')
-  dataStructure.set(501, '../src/assets/cloud_sing_waterdrop.svg')
-  dataStructure.set(520, '../src/assets/cloud_sing_waterdrop.svg')
-  dataStructure.set(521, '../src/assets/cloud_sing_waterdrop.svg')
-  dataStructure.set(502, '../src/assets/cloud_heavyrain.svg')
-  dataStructure.set(503, '../src/assets/cloud_heavyrain.svg')
-  dataStructure.set(504, '../src/assets/cloud_heavyrain.svg')
-  dataStructure.set(511, '../src/assets/cloud_heavyrain.svg')
-  dataStructure.set(522, '../src/assets/cloud_heavyrain.svg')
-  dataStructure.set(531, '../src/assets/cloud_heavyrain.svg')
-  dataStructure.set(600, '../src/assets/cloud_sing_snowflake.svg')
-  dataStructure.set(601, '../src/assets/cloud_sing_snowflake.svg')
-  dataStructure.set(612, '../src/assets/cloud_sing_snowflake.svg')
-  dataStructure.set(615, '../src/assets/cloud_sing_snowflake.svg')
-  dataStructure.set(616, '../src/assets/cloud_sing_snowflake.svg')
-  dataStructure.set(620, '../src/assets/cloud_sing_snowflake.svg')
-  dataStructure.set(602, '../src/assets/cloud_3_snowflake.svg')
-  dataStructure.set(611, '../src/assets/cloud_3_snowflake.svg')
-  dataStructure.set(613, '../src/assets/cloud_3_snowflake.svg')
-  dataStructure.set(621, '../src/assets/cloud_3_snowflake.svg')
-  dataStructure.set(622, '../src/assets/cloud_3_snowflake.svg')
-  dataStructure.set(701, '../src/assets/waves.svg')
-  dataStructure.set(711, '../src/assets/waves.svg')
-  dataStructure.set(721, '../src/assets/waves.svg')
-  dataStructure.set(731, '../src/assets/waves.svg')
-  dataStructure.set(741, '../src/assets/waves.svg')
-  dataStructure.set(751, '../src/assets/waves.svg')
-  dataStructure.set(761, '../src/assets/waves.svg')
-  dataStructure.set(762, '../src/assets/waves.svg')
-  dataStructure.set(771, '../src/assets/waves.svg')
-  dataStructure.set(781, '../src/assets/tornado.svg')
-  dataStructure.set(800, '../src/assets/full_sun.svg')
-  dataStructure.set(804, '../src/assets/cloud.svg')
-  dataStructure.set(801, '../src/assets/cloud_sun.svg')
-  dataStructure.set(802, '../src/assets/cloud_sun.svg')
-  dataStructure.set(803, '../src/assets/cloud_sun.svg')
 
   useEffect(() => {
     const fetchWeatherData = async (latitude: number, longitude: number) => {
@@ -83,9 +28,9 @@ const WeeklyWeather: React.FC = () => {
             ),
             mintemp: Math.floor(response.data.list[i].temp.min),
             maxtemp: Math.floor(response.data.list[i].temp.max),
-            precipitation: dataStructure.get(
+            precipitation: weatherIcons.get(
               response.data.list[i].weather[0].id
-            ),
+            ) as string,
             rainchance: response.data.list[i].rain || 0,
           })
         }

@@ -124,7 +124,7 @@ const SearchPage = () => {
         {/* Searched Location Cards */}
         {/* Default Current Location Card */}
         <section className="">
-          <SearchLocationCard city={'Houston'} state={'TX'} />
+          <SearchLocationCard currentLoc />
         </section>
       </main>
       <Navbar selected="search" />

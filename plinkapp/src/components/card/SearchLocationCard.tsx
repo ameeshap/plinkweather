@@ -1,28 +1,65 @@
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import useLocationStore from '../store'
 import { DateTime } from 'luxon'
-import { findFromCityStateProvince } from 'city-timezones'
+import { lookupViaCity } from 'city-timezones'
+import useLocationStore, { fetchLocationData, locationData } from '../store'
 
 interface SearchLocationCardProps {
   // Variables for location
-  city: string
-  state: string
+  currentLoc: boolean
+  city?: string
 }
 
-const SearchLocationCard = (props: SearchLocationCardProps) => {
-  const localTimeZone = findFromCityStateProvince(
-    props.city + ' ' + props.state
-  )[0].timezone
-  const localTime = DateTime.local().setZone(localTimeZone)
-  // PUT IN FETCH HERE
-  const localTemp = 32
+const SearchLocationCard: React.FC<SearchLocationCardProps> = (props) => {
+  const locations = useLocationStore((state) => state.locations)
+  const currentLoc = useLocationStore((state) => state.currentLoc)
+  const fetchCurrentLoc = useLocationStore(
+    (state) => state.fetchCurrentLocation
+  )
+
+  const [selectedLoc, setSelectedLoc] = useState<locationData | null>()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [localTemp, setLocalTemp] = useState<number | null>()
+  const [localTimeZone, setLocalTimeZone] = useState<string>()
+  const [localTime, setLocalTime] = useState<DateTime>(
+    DateTime.local().setZone(localTimeZone)
+  )
+
+  useEffect(() => {
+    const fetchTemperature = async () => {
+      if (props.currentLoc) {
+        const value = await fetchCurrentLoc()
+        setSelectedLoc(value)
+        setIsLoading(false)
+      } else {
+        const value = await fetchLocationData(props.city)
+        setSelectedLoc(value)
+        setIsLoading(false)
+      }
+    }
+    fetchTemperature()
+    console.log(selectedLoc)
+  }, [props.currentLoc])
+
+  useEffect(() => {
+    const setTime = async () => {
+      if (selectedLoc) {
+        setLocalTemp(selectedLoc.temp)
+        setLocalTimeZone(lookupViaCity(selectedLoc.city)[0].timezone)
+        setLocalTime(DateTime.local().setZone(localTimeZone))
+      } else {
+        const value = await fetchLocationData(props.city)
+        setSelectedLoc(value)
+      }
+    }
+    setTime()
+    console.log(selectedLoc)
+  }, [selectedLoc])
 
   // Functionality for color change with tempuerature
   function tempColorPicker(n: number) {
     if (n < 32) return 'bg-tempblue'
-
     if (n > 32 && n < 85) return 'bg-tempgreen'
-
     if (n > 85) return 'bg-tempred'
     return 'bg-tempblue'
   }
@@ -32,22 +69,36 @@ const SearchLocationCard = (props: SearchLocationCardProps) => {
   }
 
   return (
-    <div
-      className={
-        'mx-2 mt-4 flex h-24 w-auto flex-grow flex-row justify-between rounded-2xl pl-4' +
-        ' ' +
-        tempColorPicker(localTemp)
-      }
-      onClick={(event) => locationClickHandler(event)}
-    >
-      <div className="flex flex-col">
-        <p className="flex pt-2 text-3xl font-semibold italic">{props.city}</p>
-        <p className="">{localTime.toFormat('h:mm a')}</p>
-      </div>
-      <p className="flex self-center pr-5 text-[3rem] font-semibold">
-        {localTemp}&deg;
-      </p>
-    </div>
+    <>
+      {!isLoading && selectedLoc ? (
+        <Link to={`/search/:${selectedLoc.city.toLowerCase()}`}>
+          <div
+            className={
+              'mx-2 mt-4 flex h-24 w-auto flex-grow flex-row justify-between rounded-2xl pl-4' +
+              ' ' +
+              (localTemp !== null ? tempColorPicker(selectedLoc.temp) : '')
+            }
+            onClick={(event) => locationClickHandler(event)}
+          >
+            <div className="flex flex-col">
+              <p className="flex pt-2 text-3xl font-semibold italic">
+                {selectedLoc.city}
+              </p>
+              <p className="">{localTime.toFormat('h:mm a')}</p>
+            </div>
+            <p className="flex self-center pr-5 text-[3rem] font-semibold">
+              {selectedLoc.temp !== null ? (
+                `${selectedLoc.temp}°`
+              ) : (
+                <p className="loading loading-dots loading-lg mr-10"></p>
+              )}
+            </p>
+          </div>
+        </Link>
+      ) : (
+        <></>
+      )}
+    </>
   )
 }
 
