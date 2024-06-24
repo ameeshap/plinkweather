@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for plinkapp/src/pages/LocationPage.tsx</title>
+    <title>Code coverage report for plinkapp/src/components/WeeklyForecastBack.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">plinkapp/src/pages</a> LocationPage.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">plinkapp/src/components</a> WeeklyForecastBack.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/128</span>
+                <span class='fraction'>0/134</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/128</span>
+                <span class='fraction'>0/134</span>
             </div>
         
             
@@ -191,7 +191,13 @@
 <a name='L126'></a><a href='#L126'>126</a>
 <a name='L127'></a><a href='#L127'>127</a>
 <a name='L128'></a><a href='#L128'>128</a>
-<a name='L129'></a><a href='#L129'>129</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -319,134 +325,146 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import Navbar from '@/components/Navbar.tsx'<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { useState, useEffect } from 'react'</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { useState, useEffect } from 'react'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import axios from 'axios'</span>
+<span class="cstat-no" title="statement not covered" >import WeeklyForecastFront, {</span>
+<span class="cstat-no" title="statement not covered" >  WeatherDay,</span>
+<span class="cstat-no" title="statement not covered" >} from '@/components/WeeklyForecastFront'</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >import FeatureWeatherCard from '@/components/FeatureWeatherCard'</span>
-<span class="cstat-no" title="statement not covered" >import LocationCard from '@/components/LocationCard'</span>
-<span class="cstat-no" title="statement not covered" >import Banner from '@/components/Banner'</span>
-<span class="cstat-no" title="statement not covered" >import MapCard from '@/components/card/MapCard'</span>
+<span class="cstat-no" title="statement not covered" >const WeeklyWeather: React.FC = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const [forecast, setDays] = useState&lt;WeatherDay[]&gt;([])</span>
+<span class="cstat-no" title="statement not covered" >  const [loading, setLoading] = useState&lt;boolean&gt;(true)</span>
+<span class="cstat-no" title="statement not covered" >  const [error, setError] = useState&lt;string | null&gt;(null)</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// Type and data from localStorage store</span>
-<span class="cstat-no" title="statement not covered" >import { locationData } from '@/components/store'</span>
-<span class="cstat-no" title="statement not covered" >import useLocationStore from '@/components/store'</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface LocationProps {</span>
-<span class="cstat-no" title="statement not covered" >  currentLoc: boolean</span>
-<span class="cstat-no" title="statement not covered" >  location?: locationData</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const LocationPage = (props: LocationProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  // Controlling weather alerts</span>
-<span class="cstat-no" title="statement not covered" >  const [showBanner, setShowBanner] = useState(false)</span>
-<span class="cstat-no" title="statement not covered" >  const [bannerProps, setBannerProps] = useState({</span>
-<span class="cstat-no" title="statement not covered" >    message: '',</span>
-<span class="cstat-no" title="statement not covered" >    type: '',</span>
-<span class="cstat-no" title="statement not covered" >    onClose: () =&gt; {},</span>
-<span class="cstat-no" title="statement not covered" >  })</span>
-<span class="cstat-no" title="statement not covered" >  const [isLoading, setIsLoading] = useState(true)</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const fetchCurrentLoc = useLocationStore(</span>
-<span class="cstat-no" title="statement not covered" >    (state) =&gt; state.fetchCurrentLocation</span>
-<span class="cstat-no" title="statement not covered" >  )</span>
-<span class="cstat-no" title="statement not covered" >  const currentLocation = useLocationStore((state) =&gt; state.currentLoc)</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const showError = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setBannerProps({</span>
-<span class="cstat-no" title="statement not covered" >      message: 'An error occurred.',</span>
-<span class="cstat-no" title="statement not covered" >      type: 'error',</span>
-<span class="cstat-no" title="statement not covered" >      onClose: () =&gt; setShowBanner(false),</span>
-<span class="cstat-no" title="statement not covered" >    })</span>
-<span class="cstat-no" title="statement not covered" >    setShowBanner(true)</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  const dataStructure = new Map()</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(201, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(202, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(211, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(212, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(221, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(232, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(200, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(210, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(230, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(231, '../src/assets/cloud_lightning_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(300, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(301, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(302, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(310, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(311, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(312, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(313, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(314, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(321, '../src/assets/3_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(500, '../src/assets/cloud_sing_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(501, '../src/assets/cloud_sing_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(520, '../src/assets/cloud_sing_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(521, '../src/assets/cloud_sing_waterdrop.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(502, '../src/assets/cloud_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(503, '../src/assets/cloud_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(504, '../src/assets/cloud_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(511, '../src/assets/cloud_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(522, '../src/assets/cloud_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(531, '../src/assets/cloud_heavyrain.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(600, '../src/assets/cloud_sing_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(601, '../src/assets/cloud_sing_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(612, '../src/assets/cloud_sing_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(615, '../src/assets/cloud_sing_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(616, '../src/assets/cloud_sing_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(620, '../src/assets/cloud_sing_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(602, '../src/assets/cloud_3_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(611, '../src/assets/cloud_3_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(613, '../src/assets/cloud_3_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(621, '../src/assets/cloud_3_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(622, '../src/assets/cloud_3_snowflake.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(701, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(711, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(721, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(731, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(741, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(751, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(761, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(762, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(771, '../src/assets/waves.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(781, '../src/assets/tornado.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(800, '../src/assets/full_sun.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(804, '../src/assets/cloud.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(801, '../src/assets/cloud_sun.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(802, '../src/assets/cloud_sun.svg')</span>
+<span class="cstat-no" title="statement not covered" >  dataStructure.set(803, '../src/assets/cloud_sun.svg')</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const fetchLocationData = async () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      await fetchCurrentLoc()</span>
-<span class="cstat-no" title="statement not covered" >      setIsLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >    const fetchWeatherData = async (latitude: number, longitude: number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        const response = await axios.get(</span>
+<span class="cstat-no" title="statement not covered" >          `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&amp;lon=${longitude}&amp;cnt=8&amp;units=imperial&amp;appid=925cea5983a4d4da4ea3ffa502d82252`</span>
+<span class="cstat-no" title="statement not covered" >        )</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        const transformedData: WeatherDay[] = []</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 1; i &lt; 8; i++) {</span>
+<span class="cstat-no" title="statement not covered" >          transformedData.push({</span>
+<span class="cstat-no" title="statement not covered" >            day: new Date(response.data.list[i].dt * 1000).toLocaleDateString(</span>
+<span class="cstat-no" title="statement not covered" >              'en-US',</span>
+<span class="cstat-no" title="statement not covered" >              { weekday: 'long' }</span>
+<span class="cstat-no" title="statement not covered" >            ),</span>
+<span class="cstat-no" title="statement not covered" >            mintemp: Math.floor(response.data.list[i].temp.min),</span>
+<span class="cstat-no" title="statement not covered" >            maxtemp: Math.floor(response.data.list[i].temp.max),</span>
+<span class="cstat-no" title="statement not covered" >            precipitation: dataStructure.get(</span>
+<span class="cstat-no" title="statement not covered" >              response.data.list[i].weather[0].id</span>
+<span class="cstat-no" title="statement not covered" >            ),</span>
+<span class="cstat-no" title="statement not covered" >            rainchance: response.data.list[i].rain || 0,</span>
+<span class="cstat-no" title="statement not covered" >          })</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        setDays(transformedData)</span>
+<span class="cstat-no" title="statement not covered" >        setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >      } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >        setError('Failed to fetch weather data')</span>
+<span class="cstat-no" title="statement not covered" >        setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >    fetchLocationData()</span>
-<span class="cstat-no" title="statement not covered" >  }, [fetchCurrentLoc])</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  if (isLoading) {</span>
-<span class="cstat-no" title="statement not covered" >    return &lt;div&gt;Loading...&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    const getLocation = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (navigator.geolocation) {</span>
+<span class="cstat-no" title="statement not covered" >        navigator.geolocation.getCurrentPosition(</span>
+<span class="cstat-no" title="statement not covered" >          (position) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            const latitude = position.coords.latitude</span>
+<span class="cstat-no" title="statement not covered" >            const longitude = position.coords.longitude</span>
+<span class="cstat-no" title="statement not covered" >            fetchWeatherData(latitude, longitude)</span>
+<span class="cstat-no" title="statement not covered" >          },</span>
+<span class="cstat-no" title="statement not covered" >          (err) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            setError(err.message)</span>
+<span class="cstat-no" title="statement not covered" >            setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >          }</span>
+<span class="cstat-no" title="statement not covered" >        )</span>
+<span class="cstat-no" title="statement not covered" >      } else {</span>
+<span class="cstat-no" title="statement not covered" >        setError('Geolocation is not supported by this browser.')</span>
+<span class="cstat-no" title="statement not covered" >        setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    getLocation()</span>
+<span class="cstat-no" title="statement not covered" >  }, [])</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  if (loading) {</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;p&gt;Loading...&lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  if (!currentLocation) {</span>
-<span class="cstat-no" title="statement not covered" >    return &lt;div&gt;Error: Could not fetch current location&lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  if (error) {</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;p&gt;{error}&lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  // const currentLocation = locations[0]</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {showBanner &amp;&amp; &lt;Banner {...bannerProps} /&gt;}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="mx-auto flex min-h-screen flex-col items-center justify-center bg-bgwhite"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {/* Content For Page */}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;button onClick={showError}&gt;Show Error&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        &lt;div</span>
-<span class="cstat-no" title="statement not covered" >          className="flex h-screen w-96 items-center justify-center bg-cardgray shadow-xl"</span>
-<span class="cstat-no" title="statement not covered" >          style={{</span>
-<span class="cstat-no" title="statement not covered" >            position: 'relative',</span>
-<span class="cstat-no" title="statement not covered" >            width: '393px',</span>
-<span class="cstat-no" title="statement not covered" >            height: '1793px',</span>
-<span class="cstat-no" title="statement not covered" >          }}</span>
-<span class="cstat-no" title="statement not covered" >        &gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;LocationCard</span>
-<span class="cstat-no" title="statement not covered" >            city={currentLocation.city}</span>
-<span class="cstat-no" title="statement not covered" >            img_src="../src/assets/full_sun.svg"</span>
-<span class="cstat-no" title="statement not covered" >            temp={currentLocation.temp || 0}</span>
-<span class="cstat-no" title="statement not covered" >          /&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >          &lt;FeatureWeatherCard</span>
-<span class="cstat-no" title="statement not covered" >            img_src="../src/assets/waves.svg"</span>
-<span class="cstat-no" title="statement not covered" >            condition="Humidity"</span>
-<span class="cstat-no" title="statement not covered" >            value={`${currentLocation.humidity}%`}</span>
-<span class="cstat-no" title="statement not covered" >            left="20px"</span>
-<span class="cstat-no" title="statement not covered" >            top="1000px"</span>
-<span class="cstat-no" title="statement not covered" >            color="bg-tempblue"</span>
-<span class="cstat-no" title="statement not covered" >          &gt;&lt;/FeatureWeatherCard&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >          &lt;FeatureWeatherCard</span>
-<span class="cstat-no" title="statement not covered" >            img_src="../src/assets/wind.svg"</span>
-<span class="cstat-no" title="statement not covered" >            condition="Wind Speed"</span>
-<span class="cstat-no" title="statement not covered" >            value={`${currentLocation.wind} mph`}</span>
-<span class="cstat-no" title="statement not covered" >            left="200px"</span>
-<span class="cstat-no" title="statement not covered" >            top=""</span>
-<span class="cstat-no" title="statement not covered" >            color="bg-tempceladon"</span>
-<span class="cstat-no" title="statement not covered" >          &gt;&lt;/FeatureWeatherCard&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;FeatureWeatherCard</span>
-<span class="cstat-no" title="statement not covered" >            img_src="../src/assets/sing_waterdrop.svg"</span>
-<span class="cstat-no" title="statement not covered" >            condition="Visibility"</span>
-<span class="cstat-no" title="statement not covered" >            value={`${currentLocation.visibility}`}</span>
-<span class="cstat-no" title="statement not covered" >            left="200px"</span>
-<span class="cstat-no" title="statement not covered" >            top="1000px"</span>
-<span class="cstat-no" title="statement not covered" >            color="bg-tempperi"</span>
-<span class="cstat-no" title="statement not covered" >          &gt;&lt;/FeatureWeatherCard&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;FeatureWeatherCard</span>
-<span class="cstat-no" title="statement not covered" >            img_src="../src/assets/fahrenheit.svg"</span>
-<span class="cstat-no" title="statement not covered" >            condition="Feels Like"</span>
-<span class="cstat-no" title="statement not covered" >            value={`${currentLocation.feels_like}°F`}</span>
-<span class="cstat-no" title="statement not covered" >            left="20px"</span>
-<span class="cstat-no" title="statement not covered" >            top="2000"</span>
-<span class="cstat-no" title="statement not covered" >            color="bg-tempplum"</span>
-<span class="cstat-no" title="statement not covered" >          &gt;&lt;/FeatureWeatherCard&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;MapCard&gt;&lt;/MapCard&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        {props.currentLoc ? (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Navbar selected="currentLoc" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        ) : (</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Navbar selected="search" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          // Insert search page formatting here</span>
-<span class="cstat-no" title="statement not covered" >        )}</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
-<span class="cstat-no" title="statement not covered" >  )</span>
+<span class="cstat-no" title="statement not covered" >  return &lt;WeeklyForecastFront forecast={forecast} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default LocationPage</span>
+<span class="cstat-no" title="statement not covered" >export default WeeklyWeather</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

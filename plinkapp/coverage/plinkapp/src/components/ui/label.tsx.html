@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for plinkapp/src/components/Banner.tsx</title>
+    <title>Code coverage report for plinkapp/src/components/ui/label.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">plinkapp/src/components</a> Banner.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">plinkapp/src/components/ui</a> label.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/26</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
@@ -87,8 +87,7 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -112,33 +111,31 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React from 'react';</span></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import * as React from "react"</span></span></span>
+<span class="cstat-no" title="statement not covered" >import * as LabelPrimitive from "@radix-ui/react-label"</span>
+<span class="cstat-no" title="statement not covered" >import { cva, type VariantProps } from "class-variance-authority"</span>
 <span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >import { cn } from "@/lib/utils"</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface BannerProps {</span>
-<span class="cstat-no" title="statement not covered" >  message: string;</span>
-<span class="cstat-no" title="statement not covered" >  type: string;</span>
-<span class="cstat-no" title="statement not covered" >  onClose: () =&gt; void;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" >const labelVariants = cva(</span>
+<span class="cstat-no" title="statement not covered" >  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"</span>
+<span class="cstat-no" title="statement not covered" >)</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const Banner = ({ message, type, onClose } : BannerProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  let bannerClass = 'banner';</span>
-<span class="cstat-no" title="statement not covered" >  if (type === 'error') bannerClass += ' error';</span>
-<span class="cstat-no" title="statement not covered" >  else if (type === 'success') bannerClass += ' success';</span>
-<span class="cstat-no" title="statement not covered" >  // Add more types as needed</span>
+<span class="cstat-no" title="statement not covered" >const Label = React.forwardRef&lt;</span>
+<span class="cstat-no" title="statement not covered" >  React.ElementRef&lt;typeof LabelPrimitive.Root&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  React.ComponentPropsWithoutRef&lt;typeof LabelPrimitive.Root&gt; &amp;</span>
+<span class="cstat-no" title="statement not covered" >    VariantProps&lt;typeof labelVariants&gt;</span>
+<span class="cstat-no" title="statement not covered" >&gt;(({ className, ...props }, ref) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >  &lt;LabelPrimitive.Root</span>
+<span class="cstat-no" title="statement not covered" >    ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >    className={cn(labelVariants(), className)}</span>
+<span class="cstat-no" title="statement not covered" >    {...props}</span>
+<span class="cstat-no" title="statement not covered" >  /&gt;</span>
+<span class="cstat-no" title="statement not covered" >))</span>
+<span class="cstat-no" title="statement not covered" >Label.displayName = LabelPrimitive.Root.displayName</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className={bannerClass}style={{</span>
-<span class="cstat-no" title="statement not covered" >      borderRadius: '20px',</span>
-<span class="cstat-no" title="statement not covered" >    }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p&gt;{message}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button onClick={onClose}&gt;X&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default Banner;</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >export { Label }</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
@@ -147,14 +144,14 @@
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2024-06-24T19:30:39.341Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     

@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for plinkapp/src/components/FeatureWeatherCard.tsx</title>
+    <title>Code coverage report for plinkapp/src/components/ui/button.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">plinkapp/src/components</a> FeatureWeatherCard.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">plinkapp/src/components/ui</a> button.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/51</span>
+                <span class='fraction'>0/56</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/51</span>
+                <span class='fraction'>0/56</span>
             </div>
         
             
@@ -114,7 +114,12 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -165,57 +170,67 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React from 'react'<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import * as React from "react"</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { Slot } from "@radix-ui/react-slot"</span>
+<span class="cstat-no" title="statement not covered" >import { cva, type VariantProps } from "class-variance-authority"</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface FeatureWeatherCardProps {</span>
-<span class="cstat-no" title="statement not covered" >  condition: string</span>
-<span class="cstat-no" title="statement not covered" >  value: String</span>
-<span class="cstat-no" title="statement not covered" >  img_src: string</span>
-<span class="cstat-no" title="statement not covered" >  left: string</span>
-<span class="cstat-no" title="statement not covered" >  top: string</span>
-<span class="cstat-no" title="statement not covered" >  color: string</span>
+<span class="cstat-no" title="statement not covered" >import { cn } from "@/lib/utils"</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const buttonVariants = cva(</span>
+<span class="cstat-no" title="statement not covered" >  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300",</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    variants: {</span>
+<span class="cstat-no" title="statement not covered" >      variant: {</span>
+<span class="cstat-no" title="statement not covered" >        default: "bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90",</span>
+<span class="cstat-no" title="statement not covered" >        destructive:</span>
+<span class="cstat-no" title="statement not covered" >          "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",</span>
+<span class="cstat-no" title="statement not covered" >        outline:</span>
+<span class="cstat-no" title="statement not covered" >          "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",</span>
+<span class="cstat-no" title="statement not covered" >        secondary:</span>
+<span class="cstat-no" title="statement not covered" >          "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",</span>
+<span class="cstat-no" title="statement not covered" >        ghost: "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",</span>
+<span class="cstat-no" title="statement not covered" >        link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",</span>
+<span class="cstat-no" title="statement not covered" >      },</span>
+<span class="cstat-no" title="statement not covered" >      size: {</span>
+<span class="cstat-no" title="statement not covered" >        default: "h-10 px-4 py-2",</span>
+<span class="cstat-no" title="statement not covered" >        sm: "h-9 rounded-md px-3",</span>
+<span class="cstat-no" title="statement not covered" >        lg: "h-11 rounded-md px-8",</span>
+<span class="cstat-no" title="statement not covered" >        icon: "h-10 w-10",</span>
+<span class="cstat-no" title="statement not covered" >      },</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    defaultVariants: {</span>
+<span class="cstat-no" title="statement not covered" >      variant: "default",</span>
+<span class="cstat-no" title="statement not covered" >      size: "default",</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >)</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export interface ButtonProps</span>
+<span class="cstat-no" title="statement not covered" >  extends React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;,</span>
+<span class="cstat-no" title="statement not covered" >    VariantProps&lt;typeof buttonVariants&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  asChild?: boolean</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const FeatureWeatherCard: React.FC&lt;FeatureWeatherCardProps&gt; = ({</span>
-<span class="cstat-no" title="statement not covered" >  condition,</span>
-<span class="cstat-no" title="statement not covered" >  value,</span>
-<span class="cstat-no" title="statement not covered" >  img_src,</span>
-<span class="cstat-no" title="statement not covered" >  left,</span>
-<span class="cstat-no" title="statement not covered" >  top,</span>
-<span class="cstat-no" title="statement not covered" >  color,</span>
-<span class="cstat-no" title="statement not covered" >}) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div</span>
-<span class="cstat-no" title="statement not covered" >      className={`card items-center justify-center shadow-xl ${color}`}</span>
-<span class="cstat-no" title="statement not covered" >      style={{</span>
-<span class="cstat-no" title="statement not covered" >        position: 'absolute',</span>
-<span class="cstat-no" title="statement not covered" >        width: '168px',</span>
-<span class="cstat-no" title="statement not covered" >        height: '143px',</span>
-<span class="cstat-no" title="statement not covered" >        left: left,</span>
-<span class="cstat-no" title="statement not covered" >        top: top,</span>
-<span class="cstat-no" title="statement not covered" >        borderRadius: '20px',</span>
-<span class="cstat-no" title="statement not covered" >      }}</span>
-<span class="cstat-no" title="statement not covered" >    &gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;h2 className="card-title items-center font-inter"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p&gt;{condition}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/h2&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p&gt;{value}&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >const Button = React.forwardRef&lt;HTMLButtonElement, ButtonProps&gt;(</span>
+<span class="cstat-no" title="statement not covered" >  ({ className, variant, size, asChild = false, ...props }, ref) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const Comp = asChild ? Slot : "button"</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Comp</span>
+<span class="cstat-no" title="statement not covered" >        className={cn(buttonVariants({ variant, size, className }))}</span>
+<span class="cstat-no" title="statement not covered" >        ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >        {...props}</span>
+<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    )</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >)</span>
+<span class="cstat-no" title="statement not covered" >Button.displayName = "Button"</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      &lt;figure className="w-133 h-133"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;img</span>
-<span class="cstat-no" title="statement not covered" >          src={img_src}</span>
-<span class="cstat-no" title="statement not covered" >          className="h-full w-full "</span>
-<span class="cstat-no" title="statement not covered" >          style={{</span>
-<span class="cstat-no" title="statement not covered" >            width: '35px',</span>
-<span class="cstat-no" title="statement not covered" >            height: '35px',</span>
-<span class="cstat-no" title="statement not covered" >          }}</span>
-<span class="cstat-no" title="statement not covered" >        &gt;&lt;/img&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/figure&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  )</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default FeatureWeatherCard</span>
+<span class="cstat-no" title="statement not covered" >export { Button, buttonVariants }</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -225,14 +240,14 @@
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2024-06-24T19:30:39.341Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     

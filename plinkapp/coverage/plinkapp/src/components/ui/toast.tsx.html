@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for plinkapp/src/pages/SearchPage.tsx</title>
+    <title>Code coverage report for plinkapp/src/components/ui/toast.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">plinkapp/src/pages</a> SearchPage.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">plinkapp/src/components/ui</a> toast.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/135</span>
+                <span class='fraction'>0/127</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/135</span>
+                <span class='fraction'>0/127</span>
             </div>
         
             
@@ -190,15 +190,7 @@
 <a name='L125'></a><a href='#L125'>125</a>
 <a name='L126'></a><a href='#L126'>126</a>
 <a name='L127'></a><a href='#L127'>127</a>
-<a name='L128'></a><a href='#L128'>128</a>
-<a name='L129'></a><a href='#L129'>129</a>
-<a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L128'></a><a href='#L128'>128</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -325,149 +317,133 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useEffect, useState } from 'react'</span></span></span>
-<span class="cstat-no" title="statement not covered" >import usePlacesAutocomplete, {</span>
-<span class="cstat-no" title="statement not covered" >  getGeocode,</span>
-<span class="cstat-no" title="statement not covered" >  getLatLng,</span>
-<span class="cstat-no" title="statement not covered" >} from 'use-places-autocomplete'</span>
-<span class="cstat-no" title="statement not covered" >import useOnclickOutside from 'react-cool-onclickoutside'</span>
-<span class="cstat-no" title="statement not covered" >import { Loader } from '@googlemaps/js-api-loader'</span>
-<span class="cstat-no" title="statement not covered" >import Navbar from '@/components/Navbar'</span>
-<span class="cstat-no" title="statement not covered" >import SearchLocationCard from '@/components/card/SearchLocationCard'</span>
-<span class="cstat-no" title="statement not covered" >import { IoArrowBack } from 'react-icons/io5'</span>
-<span class="cstat-no" title="statement not covered" >import { Link } from 'react-router-dom'</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import * as React from "react"<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cstat-no" title="statement not covered" >import * as ToastPrimitives from "@radix-ui/react-toast"</span>
+<span class="cstat-no" title="statement not covered" >import { cva, type VariantProps } from "class-variance-authority"</span>
+<span class="cstat-no" title="statement not covered" >import { X } from "lucide-react"</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const PlacesAutocomplete = ({ onSelect }: any) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const {</span>
-<span class="cstat-no" title="statement not covered" >    ready,</span>
-<span class="cstat-no" title="statement not covered" >    value,</span>
-<span class="cstat-no" title="statement not covered" >    suggestions: { status, data },</span>
-<span class="cstat-no" title="statement not covered" >    setValue,</span>
-<span class="cstat-no" title="statement not covered" >    clearSuggestions,</span>
-<span class="cstat-no" title="statement not covered" >  } = usePlacesAutocomplete({</span>
-<span class="cstat-no" title="statement not covered" >    requestOptions: {</span>
-<span class="cstat-no" title="statement not covered" >      /* Define search scope here */</span>
+<span class="cstat-no" title="statement not covered" >import { cn } from "@/lib/utils"</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ToastProvider = ToastPrimitives.Provider</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ToastViewport = React.forwardRef&lt;</span>
+<span class="cstat-no" title="statement not covered" >  React.ElementRef&lt;typeof ToastPrimitives.Viewport&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  React.ComponentPropsWithoutRef&lt;typeof ToastPrimitives.Viewport&gt;</span>
+<span class="cstat-no" title="statement not covered" >&gt;(({ className, ...props }, ref) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >  &lt;ToastPrimitives.Viewport</span>
+<span class="cstat-no" title="statement not covered" >    ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >    className={cn(</span>
+<span class="cstat-no" title="statement not covered" >      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",</span>
+<span class="cstat-no" title="statement not covered" >      className</span>
+<span class="cstat-no" title="statement not covered" >    )}</span>
+<span class="cstat-no" title="statement not covered" >    {...props}</span>
+<span class="cstat-no" title="statement not covered" >  /&gt;</span>
+<span class="cstat-no" title="statement not covered" >))</span>
+<span class="cstat-no" title="statement not covered" >ToastViewport.displayName = ToastPrimitives.Viewport.displayName</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const toastVariants = cva(</span>
+<span class="cstat-no" title="statement not covered" >  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border border-slate-200 p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full dark:border-slate-800",</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    variants: {</span>
+<span class="cstat-no" title="statement not covered" >      variant: {</span>
+<span class="cstat-no" title="statement not covered" >        default: "border bg-white text-slate-950 dark:bg-slate-950 dark:text-slate-50",</span>
+<span class="cstat-no" title="statement not covered" >        destructive:</span>
+<span class="cstat-no" title="statement not covered" >          "destructive group border-red-500 bg-red-500 text-slate-50 dark:border-red-900 dark:bg-red-900 dark:text-slate-50",</span>
+<span class="cstat-no" title="statement not covered" >      },</span>
 <span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    debounce: 300,</span>
-<span class="cstat-no" title="statement not covered" >  })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const ref = useOnclickOutside(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    clearSuggestions()</span>
-<span class="cstat-no" title="statement not covered" >  })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const handleInput = (e: any) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setValue(e.target.value)</span>
+<span class="cstat-no" title="statement not covered" >    defaultVariants: {</span>
+<span class="cstat-no" title="statement not covered" >      variant: "default",</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >)</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const handleSelect =</span>
-<span class="cstat-no" title="statement not covered" >    ({ description }: any) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >    () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      setValue(description, false)</span>
-<span class="cstat-no" title="statement not covered" >      clearSuggestions()</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      getGeocode({ address: description }).then((results) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const { lat, lng } = getLatLng(results[0])</span>
-<span class="cstat-no" title="statement not covered" >        console.log('📍 Coordinates: ', { lat, lng })</span>
-<span class="cstat-no" title="statement not covered" >        onSelect({ lat, lng })</span>
-<span class="cstat-no" title="statement not covered" >      })</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const renderSuggestions = () =&gt;</span>
-<span class="cstat-no" title="statement not covered" >    data.map((suggestion) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      const {</span>
-<span class="cstat-no" title="statement not covered" >        place_id,</span>
-<span class="cstat-no" title="statement not covered" >        structured_formatting: { main_text, secondary_text },</span>
-<span class="cstat-no" title="statement not covered" >      } = suggestion</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      return (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;li</span>
-<span class="cstat-no" title="statement not covered" >          key={place_id}</span>
-<span class="cstat-no" title="statement not covered" >          onClick={handleSelect(suggestion)}</span>
-<span class="cstat-no" title="statement not covered" >          className="cursor-pointer p-2 hover:bg-gray-200"</span>
-<span class="cstat-no" title="statement not covered" >        &gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;strong&gt;{main_text}&lt;/strong&gt; &lt;small&gt;{secondary_text}&lt;/small&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/li&gt;</span>
-<span class="cstat-no" title="statement not covered" >      )</span>
-<span class="cstat-no" title="statement not covered" >    })</span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const Toast = React.forwardRef&lt;</span>
+<span class="cstat-no" title="statement not covered" >  React.ElementRef&lt;typeof ToastPrimitives.Root&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  React.ComponentPropsWithoutRef&lt;typeof ToastPrimitives.Root&gt; &amp;</span>
+<span class="cstat-no" title="statement not covered" >    VariantProps&lt;typeof toastVariants&gt;</span>
+<span class="cstat-no" title="statement not covered" >&gt;(({ className, variant, ...props }, ref) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div ref={ref} className="relative w-full"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;input</span>
-<span class="cstat-no" title="statement not covered" >        value={value}</span>
-<span class="cstat-no" title="statement not covered" >        onChange={handleInput}</span>
-<span class="cstat-no" title="statement not covered" >        disabled={!ready}</span>
-<span class="cstat-no" title="statement not covered" >        placeholder="Search City or Address"</span>
-<span class="cstat-no" title="statement not covered" >        className="w-full rounded-lg bg-slate-400 p-3 font-semibold placeholder-gray-700"</span>
-<span class="cstat-no" title="statement not covered" >      /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {status === 'OK' &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;ul className="absolute z-10 w-full rounded-b-lg border border-gray-300 bg-white shadow-lg"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {renderSuggestions()}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/ul&gt;</span>
-<span class="cstat-no" title="statement not covered" >      )}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;ToastPrimitives.Root</span>
+<span class="cstat-no" title="statement not covered" >      ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >      className={cn(toastVariants({ variant }), className)}</span>
+<span class="cstat-no" title="statement not covered" >      {...props}</span>
+<span class="cstat-no" title="statement not covered" >    /&gt;</span>
 <span class="cstat-no" title="statement not covered" >  )</span>
+<span class="cstat-no" title="statement not covered" >})</span>
+<span class="cstat-no" title="statement not covered" >Toast.displayName = ToastPrimitives.Root.displayName</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ToastAction = React.forwardRef&lt;</span>
+<span class="cstat-no" title="statement not covered" >  React.ElementRef&lt;typeof ToastPrimitives.Action&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  React.ComponentPropsWithoutRef&lt;typeof ToastPrimitives.Action&gt;</span>
+<span class="cstat-no" title="statement not covered" >&gt;(({ className, ...props }, ref) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >  &lt;ToastPrimitives.Action</span>
+<span class="cstat-no" title="statement not covered" >    ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >    className={cn(</span>
+<span class="cstat-no" title="statement not covered" >      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-transparent px-3 text-sm font-medium ring-offset-white transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-slate-100/40 group-[.destructive]:hover:border-red-500/30 group-[.destructive]:hover:bg-red-500 group-[.destructive]:hover:text-slate-50 group-[.destructive]:focus:ring-red-500 dark:border-slate-800 dark:ring-offset-slate-950 dark:hover:bg-slate-800 dark:focus:ring-slate-300 dark:group-[.destructive]:border-slate-800/40 dark:group-[.destructive]:hover:border-red-900/30 dark:group-[.destructive]:hover:bg-red-900 dark:group-[.destructive]:hover:text-slate-50 dark:group-[.destructive]:focus:ring-red-900",</span>
+<span class="cstat-no" title="statement not covered" >      className</span>
+<span class="cstat-no" title="statement not covered" >    )}</span>
+<span class="cstat-no" title="statement not covered" >    {...props}</span>
+<span class="cstat-no" title="statement not covered" >  /&gt;</span>
+<span class="cstat-no" title="statement not covered" >))</span>
+<span class="cstat-no" title="statement not covered" >ToastAction.displayName = ToastPrimitives.Action.displayName</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ToastClose = React.forwardRef&lt;</span>
+<span class="cstat-no" title="statement not covered" >  React.ElementRef&lt;typeof ToastPrimitives.Close&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  React.ComponentPropsWithoutRef&lt;typeof ToastPrimitives.Close&gt;</span>
+<span class="cstat-no" title="statement not covered" >&gt;(({ className, ...props }, ref) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >  &lt;ToastPrimitives.Close</span>
+<span class="cstat-no" title="statement not covered" >    ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >    className={cn(</span>
+<span class="cstat-no" title="statement not covered" >      "absolute right-2 top-2 rounded-md p-1 text-slate-950/50 opacity-0 transition-opacity hover:text-slate-950 focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600 dark:text-slate-50/50 dark:hover:text-slate-50",</span>
+<span class="cstat-no" title="statement not covered" >      className</span>
+<span class="cstat-no" title="statement not covered" >    )}</span>
+<span class="cstat-no" title="statement not covered" >    toast-close=""</span>
+<span class="cstat-no" title="statement not covered" >    {...props}</span>
+<span class="cstat-no" title="statement not covered" >  &gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;X className="h-4 w-4" /&gt;</span>
+<span class="cstat-no" title="statement not covered" >  &lt;/ToastPrimitives.Close&gt;</span>
+<span class="cstat-no" title="statement not covered" >))</span>
+<span class="cstat-no" title="statement not covered" >ToastClose.displayName = ToastPrimitives.Close.displayName</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ToastTitle = React.forwardRef&lt;</span>
+<span class="cstat-no" title="statement not covered" >  React.ElementRef&lt;typeof ToastPrimitives.Title&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  React.ComponentPropsWithoutRef&lt;typeof ToastPrimitives.Title&gt;</span>
+<span class="cstat-no" title="statement not covered" >&gt;(({ className, ...props }, ref) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >  &lt;ToastPrimitives.Title</span>
+<span class="cstat-no" title="statement not covered" >    ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >    className={cn("text-sm font-semibold", className)}</span>
+<span class="cstat-no" title="statement not covered" >    {...props}</span>
+<span class="cstat-no" title="statement not covered" >  /&gt;</span>
+<span class="cstat-no" title="statement not covered" >))</span>
+<span class="cstat-no" title="statement not covered" >ToastTitle.displayName = ToastPrimitives.Title.displayName</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const ToastDescription = React.forwardRef&lt;</span>
+<span class="cstat-no" title="statement not covered" >  React.ElementRef&lt;typeof ToastPrimitives.Description&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  React.ComponentPropsWithoutRef&lt;typeof ToastPrimitives.Description&gt;</span>
+<span class="cstat-no" title="statement not covered" >&gt;(({ className, ...props }, ref) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >  &lt;ToastPrimitives.Description</span>
+<span class="cstat-no" title="statement not covered" >    ref={ref}</span>
+<span class="cstat-no" title="statement not covered" >    className={cn("text-sm opacity-90", className)}</span>
+<span class="cstat-no" title="statement not covered" >    {...props}</span>
+<span class="cstat-no" title="statement not covered" >  /&gt;</span>
+<span class="cstat-no" title="statement not covered" >))</span>
+<span class="cstat-no" title="statement not covered" >ToastDescription.displayName = ToastPrimitives.Description.displayName</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >type ToastProps = React.ComponentPropsWithoutRef&lt;typeof Toast&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >type ToastActionElement = React.ReactElement&lt;typeof ToastAction&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export {</span>
+<span class="cstat-no" title="statement not covered" >  type ToastProps,</span>
+<span class="cstat-no" title="statement not covered" >  type ToastActionElement,</span>
+<span class="cstat-no" title="statement not covered" >  ToastProvider,</span>
+<span class="cstat-no" title="statement not covered" >  ToastViewport,</span>
+<span class="cstat-no" title="statement not covered" >  Toast,</span>
+<span class="cstat-no" title="statement not covered" >  ToastTitle,</span>
+<span class="cstat-no" title="statement not covered" >  ToastDescription,</span>
+<span class="cstat-no" title="statement not covered" >  ToastClose,</span>
+<span class="cstat-no" title="statement not covered" >  ToastAction,</span>
 <span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const SearchPage = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const GOOGLEMAPS_API_KEY = process.env.GOOGLEMAPS_API_KEY</span>
-<span class="cstat-no" title="statement not covered" >  const loader = new Loader({</span>
-<span class="cstat-no" title="statement not covered" >    apiKey: GOOGLEMAPS_API_KEY as string,</span>
-<span class="cstat-no" title="statement not covered" >    version: 'weekly',</span>
-<span class="cstat-no" title="statement not covered" >    libraries: ['places'],</span>
-<span class="cstat-no" title="statement not covered" >  })</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const [isGoogleMapsLoaded, setIsGoogleMapsLoaded] = useState(false)</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    loader.importLibrary('places').then(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      setIsGoogleMapsLoaded(true)</span>
-<span class="cstat-no" title="statement not covered" >    })</span>
-<span class="cstat-no" title="statement not covered" >  }, [loader])</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const handleSelect = (coordinates: any) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    console.log('Selected coordinates:', coordinates)</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="mx-auto flex min-h-screen flex-col bg-bgwhite"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;main&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {/* Search Bar and Back Arrow*/}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;section className="mt-4 flex w-full flex-row gap-2"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {/* Back Button */}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div className="ml-2 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-400"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Link to=".."&gt;</span>
-<span class="cstat-no" title="statement not covered" >              &lt;IoArrowBack color="black" size={35} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/Link&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {/* Search Bar */}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div className="relative mr-2 flex flex-grow items-center rounded-2xl bg-slate-400 text-black"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            {isGoogleMapsLoaded ? (</span>
-<span class="cstat-no" title="statement not covered" >              &lt;PlacesAutocomplete onSelect={handleSelect} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >            ) : (</span>
-<span class="cstat-no" title="statement not covered" >              &lt;p className="ml-3 font-semibold text-gray-700"&gt;Loading...&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >            )}</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/section&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {/* Searched Location Cards */}</span>
-<span class="cstat-no" title="statement not covered" >        {/* Default Current Location Card */}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;section className=""&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;SearchLocationCard city={'Houston'} state={'TX'} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/section&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/main&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Navbar selected="search" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  )</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default SearchPage</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -477,14 +453,14 @@
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2024-06-24T19:30:39.341Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     
