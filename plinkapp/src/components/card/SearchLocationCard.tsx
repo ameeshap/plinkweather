@@ -1,4 +1,3 @@
-import { ReactEventHandler, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DateTime } from 'luxon'
 import { findFromCityStateProvince } from 'city-timezones'
