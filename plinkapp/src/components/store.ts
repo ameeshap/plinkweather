@@ -1,8 +1,13 @@
 import { create, StateCreator } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY
+// ? Imports for fetching city/state from lat long values
+import { setDefaults, fromLatLng, OutputFormat } from 'react-geocode'
 
+const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY
+const GOOGLEMAPS_API_KEY = process.env.GOOGLEMAPS_API_KEY
+
+// ? Type definitions
 export type locationData = {
   city: string
   state: string
@@ -23,7 +28,16 @@ type locationState = {
   removeLocation: (city: string) => void
   updateLocationData: (city: string) => void
   updateAllLocationData: () => void
+  fetchCurrentLocation: () => void
 }
+
+// ? Function Definitions
+setDefaults({
+  key: GOOGLEMAPS_API_KEY,
+  language: 'en',
+  region: 'es',
+  outputFormat: OutputFormat.JSON,
+})
 
 const fetchWeatherData = async (
   latitude: number,
@@ -37,6 +51,23 @@ const fetchWeatherData = async (
   }
   const data = await response.json()
   return data
+}
+
+const fetchCityState = async (latitude: number, longitude: number) => {
+  const response = await fromLatLng(latitude, longitude)
+  const addressComponents = response.results[0].address_components
+  let city = ''
+  let state = ''
+
+  for (let component of addressComponents) {
+    if (component.types.includes('locality')) {
+      city = component.long_name
+    }
+    if (component.types.includes('administrative_area_level_1')) {
+      state = component.short_name
+    }
+  }
+  return { city, state }
 }
 
 const locationStore: StateCreator<
@@ -107,6 +138,43 @@ const locationStore: StateCreator<
     )
 
     set({ locations: updatedLocations })
+  },
+  fetchCurrentLocation: () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords
+
+          try {
+            const weatherData = await fetchWeatherData(
+              latitude,
+              longitude,
+              OPENWEATHER_API_KEY!
+            )
+            const { city, state } = await fetchCityState(latitude, longitude)
+            const currentLocation = {
+              city,
+              state,
+              lat: latitude,
+              long: longitude,
+              temp: Math.floor(weatherData.main.temp),
+              wind: Math.floor(weatherData.wind.speed),
+              humidity: weatherData.main.humidity,
+              feels_like: Math.floor(weatherData.main.feels_like),
+              visibility: weatherData.visibility,
+            }
+            set({ currentLoc: currentLocation })
+          } catch (error) {
+            console.error('Error:', error)
+          }
+        },
+        (error) => {
+          console.error('Error getting geolocation: ', error)
+        }
+      )
+    } else {
+      console.error('Geolocation is not supported by this browser.')
+    }
   },
 })
 

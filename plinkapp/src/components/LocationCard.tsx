@@ -1,9 +1,5 @@
 import React from 'react'
 
-const apiKey = process.env.OPENWEATHER_API_KEY
-const API_url =
-  'https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}'
-
 interface WeatherCardProps {
   city: string
   temp: number
