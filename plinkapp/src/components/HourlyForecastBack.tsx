@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import HourlyForecastFront, { Hour } from './HourlyForecastFront'
+import HourlyForecastFront, { Hour } from '@/components/HourlyForecastFront'
 
 const HourlyWeather: React.FC = () => {
   const [hours, setHours] = useState<Hour[]>([])
@@ -82,8 +82,8 @@ const HourlyWeather: React.FC = () => {
                 minute: '2-digit',
               }
             ),
-            temp: response.data.list[i].main.temp,
-            windspeed: response.data.list[i].wind.speed,
+            temp: Math.floor(response.data.list[i].main.temp),
+            windspeed: Math.floor(response.data.list[i].wind.speed),
             precipitation: dataStructure.get(
               response.data.list[i].weather[0].id
             ),
