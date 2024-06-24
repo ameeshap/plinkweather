@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, createContext } from 'react'
 // need to do pnpm install with these components
 import { LayersControl, MapContainer, TileLayer, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -21,6 +21,7 @@ interface MapPositionProps {
   coords: LatLngExpression
 }
 
+
 function SetMapPosition({ coords }: MapPositionProps) {
   const map = useMap()
 
@@ -33,11 +34,14 @@ function SetMapPosition({ coords }: MapPositionProps) {
   return null
 }
 
+
 function MapCard() {
   const [userLocation, setLocation] = useState<{
-    latitude: number
-    longitude: number
+      latitude: number
+     longitude: number
   } | null>(null)
+
+
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -74,6 +78,7 @@ function MapCard() {
           borderRadius: '20px',
           position: 'relative',
           top: '600px',
+          zIndex: '0'
         }}
       >
         {coords && <SetMapPosition coords={coords} />}

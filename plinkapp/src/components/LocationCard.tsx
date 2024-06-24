@@ -1,5 +1,8 @@
 import React from 'react'
 
+const apiKey = '8679a3e4f001bb9961c1810bb6e10426'
+const API_url = 'https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}'
+
 interface WeatherCardProps {
   city: string
   temp: number

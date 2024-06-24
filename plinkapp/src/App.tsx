@@ -5,6 +5,7 @@ import MapPage from '@/pages/MapPage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 import './index.css'
+import SettingsPage from './pages/SettingsPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           {/* <Route path="/" element={}/> */}
           <Route path="/search" element={<SearchPage />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
           {/* <Route path="*" element={<ErrorPage />} /> */}
         </Routes>
       </Router>
