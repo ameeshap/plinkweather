@@ -36,6 +36,12 @@ type locationState = {
   fetchCurrentLocation: () => Promise<locationData | null>
 }
 
+type settingsState = {
+  severeWeather: boolean
+  rain: boolean
+  setSevereWeather: (setting: boolean) => void
+}
+
 // ? SVG code definitions
 export const weatherIcons = new Map<number, string>()
 

@@ -10,7 +10,6 @@ import SettingsPage from './pages/SettingsPage'
 function App() {
   return (
     <>
- 
       <Router>
         <Routes>
           <Route index element={<LocationPage currentLoc />} />
@@ -27,7 +26,6 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
-   
     </>
   )
 }
