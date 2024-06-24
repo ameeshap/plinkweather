@@ -1,9 +1,7 @@
 import Navbar from '@/components/Navbar.tsx'
-//import LocationPage from '@/pages/LocationPage'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import React, { useContext } from 'react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -39,7 +37,7 @@ export function SwitchForm() {
             <FormField
               control={form.control}
               name="marketing_emails"
-              render={({ field }) => (
+              render={({ field }: any) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                   <div className="space-y-0.5">
                     <FormLabel className="text-base">
