@@ -1,8 +1,4 @@
 import React from 'react'
-//import axios from 'axios'
-
-//const API_URL = 'https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API_key}'
-//const API_KEY = '8679a3e4f001bb9961c1810bb6e10426'
 
 export interface Hour {
   time: string
@@ -16,9 +12,6 @@ interface HourlyForecastProps {
 }
 
 const HourlyForecast: React.FC<HourlyForecastProps> = ({ hours }) => {
-  //console.log('print hours?')
-  // console.log(hours)
-
   return (
     <div className="flex space-x-4 overflow-x-scroll bg-bgwhite p-4">
       {hours.map((hour) => (
@@ -31,9 +24,14 @@ const HourlyForecast: React.FC<HourlyForecastProps> = ({ hours }) => {
               className="small-svg"
             ></img>
             <p className="text-black-500 font-inter text-sm">{hour.temp}°F</p>
-            <p className="text-black-500 font-inter text-sm">
-              {hour.windspeed} mph
-            </p>
+            <div className="text-black-500 flex items-center font-inter text-sm">
+              <img
+                src="../src/assets/wind.svg"
+                alt="Wind icon"
+                className="mr-1 h-4 w-4" // Adjust width and height as needed
+              />
+              <span>{hour.windspeed} mph</span>
+            </div>
             {}
           </p>
         </div>
