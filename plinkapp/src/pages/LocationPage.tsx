@@ -92,10 +92,11 @@ const LocationPage = (props: LocationProps) => {
                 img_src={getIconPath(selectedLocation.currWeath)}
                 temp={selectedLocation.temp || 0}
               />
+              {/* Hourly Weather Carousel */}
+              <HourlyWeather />
 
-              <HourlyWeather></HourlyWeather>
-
-              <WeeklyWeather></WeeklyWeather>
+              {/* Weekly Weather Carousel */}
+              <WeeklyWeather />
               <FeatureWeatherCard
                 img_src="../src/assets/waves.svg"
                 condition="Humidity"

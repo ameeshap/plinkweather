@@ -21,6 +21,8 @@ const FormSchema = z.object({
 })
 
 export function SwitchForm() {
+  const setSevereWeather = useSettingsStore((state) => state.setSevereWeather)
+  const severeWeather = useSettingsStore((state) => state.severeWeather)
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -30,9 +32,6 @@ export function SwitchForm() {
 
   // Define an onSubmit handler
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    const setSevereWeather = useSettingsStore((state) => state.setSevereWeather)
-    const severeWeather = useSettingsStore((state) => state.severeWeather)
-
     // Perform any action you want with the form data
     console.log('Form submitted with data:', data)
     if (data.severe_weather?.valueOf) setSevereWeather(true)
