@@ -12,7 +12,7 @@ const HourlyWeather: React.FC = () => {
     const fetchWeatherData = async (latitude: number, longitude: number) => {
       try {
         const response = await axios.get(
-          `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${latitude}&lon=${longitude}&cnt=24&units=imperial&appid=925cea5983a4d4da4ea3ffa502d82252`
+          `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${latitude}&lon=${longitude}&cnt=24&units=imperial&appid=${process.env.OPENWEATHER_API_KEY}`
         )
 
         const transformedData: Hour[] = []
@@ -22,7 +22,7 @@ const HourlyWeather: React.FC = () => {
             time: new Date(response.data.list[i].dt * 1000).toLocaleTimeString(
               [],
               {
-                hour: '2-digit',
+                hour: 'numeric',
                 minute: '2-digit',
               }
             ),

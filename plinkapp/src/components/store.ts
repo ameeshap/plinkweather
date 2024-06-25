@@ -1,5 +1,7 @@
 import { create, StateCreator } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import axios from 'axios'
+import weatherIcons from './weatherIcons'
 
 // ? Imports for fetching city/state from lat long values
 import {
@@ -12,7 +14,16 @@ import {
 const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY
 const GOOGLEMAPS_API_KEY = process.env.GOOGLEMAPS_API_KEY
 
-// ? Type definitions
+// ? Type definitions for weather forecasts
+export type WeatherDay = {
+  day: string
+  mintemp: number
+  maxtemp: number
+  precipitation: string
+  rainchance: number
+}
+
+// ? Type definitions for location
 export type locationData = {
   city: string
   state: string
@@ -37,12 +48,13 @@ type locationState = {
   fetchCurrentLocation: () => Promise<locationData>
 }
 
+// ? Type definitions for settings
 type settingsState = {
   severeWeather: boolean
   setSevereWeather: (s: boolean) => void
 }
 
-// ? Function Definitions
+// ? API fetch definitions for Geocode
 setDefaults({
   key: GOOGLEMAPS_API_KEY,
   language: 'en',
@@ -132,6 +144,38 @@ export const fetchLocationData = async (
     }
   } else {
     throw new Error('Either latitude/longitude or city name must be provided')
+  }
+}
+
+export const fetchWeeklyWeatherData = async (
+  latitude: number,
+  longitude: number
+) => {
+  try {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=8&units=imperial&appid=${process.env.OPENWEATHER_API_KEY}`
+    )
+
+    const transformedData: WeatherDay[] = []
+
+    for (let i = 1; i < 8; i++) {
+      transformedData.push({
+        day: new Date(response.data.list[i].dt * 1000).toLocaleDateString(
+          'en-US',
+          { weekday: 'long' }
+        ),
+        mintemp: Math.floor(response.data.list[i].temp.min),
+        maxtemp: Math.floor(response.data.list[i].temp.max),
+        precipitation: weatherIcons.get(
+          response.data.list[i].weather[0].id
+        ) as string,
+        rainchance: response.data.list[i].rain || 0,
+      })
+    }
+
+    return transformedData
+  } catch (error) {
+    throw new Error('Failed to fetch weather data')
   }
 }
 

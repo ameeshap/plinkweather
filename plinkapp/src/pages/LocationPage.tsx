@@ -12,7 +12,7 @@ import { locationData, fetchLocationData } from '@/components/store'
 import useLocationStore from '@/components/store'
 import HourlyForecast from '@/components/HourlyForecastFront'
 import HourlyWeather from '@/components/HourlyForecastBack'
-import WeeklyWeather from '@/components/WeeklyForecastBack'
+import WeeklyWeather from '@/components/WeeklyForecast'
 import weatherIcons from '@/components/weatherIcons'
 
 interface LocationProps {
@@ -57,11 +57,13 @@ const LocationPage = (props: LocationProps) => {
         const value = await fetchCurrentLoc()
         setSelectedLocation(value)
         setIsLoading(false)
+        console.log(value)
       } else if (city && !props.currentLoc) {
         console.log('customLoc')
         const value = await fetchLocationData(city)
         setSelectedLocation(value)
         setIsLoading(false)
+        console.log(value)
       }
     }
     fetchLocation()
@@ -78,7 +80,7 @@ const LocationPage = (props: LocationProps) => {
         {/* <button onClick={showError}>Show Error</button> */}
 
         <div
-          className="flex h-screen w-96 flex-col items-center justify-center bg-cardgray shadow-xl"
+          className="flex min-h-screen min-w-96 flex-col items-center justify-center bg-bgwhite shadow-xl"
           style={{
             position: 'relative',
             width: '393px',
@@ -93,10 +95,13 @@ const LocationPage = (props: LocationProps) => {
                 temp={selectedLocation.temp || 0}
               />
               {/* Hourly Weather Carousel */}
-              <HourlyWeather />
+              {/* <HourlyWeather /> */}
 
               {/* Weekly Weather Carousel */}
-              <WeeklyWeather />
+              <WeeklyWeather
+                lat={selectedLocation.lat}
+                lng={selectedLocation.long}
+              />
               <FeatureWeatherCard
                 img_src="../src/assets/waves.svg"
                 condition="Humidity"
@@ -116,7 +121,7 @@ const LocationPage = (props: LocationProps) => {
               <FeatureWeatherCard
                 img_src="../src/assets/sing_waterdrop.svg"
                 condition="Visibility"
-                value={`${selectedLocation.visibility} km`}
+                value={`${selectedLocation.visibility / 1000} km`}
                 left="200px"
                 top="980px"
                 color="bg-tempperi"
