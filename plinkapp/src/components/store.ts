@@ -36,12 +36,10 @@ type locationState = {
   fetchCurrentLocation: () => Promise<locationData>
 }
 
-export type settingsData = {
+type settingsState = {
   severeWeather: boolean
-  setSevereWeather: (setting: boolean) => void
+  setSevereWeather: (s: boolean) => void
 }
-
-type settingsState = {}
 
 // ? Function Definitions
 setDefaults({
@@ -238,4 +236,20 @@ const useLocationStore = create(
   })
 )
 
+const settingsStore: StateCreator<
+  settingsState,
+  [['zustand/persist', unknown]]
+> = (set, get) => ({
+  severeWeather: false,
+  setSevereWeather: (s: boolean) => set({ severeWeather: s }),
+})
+
+const useSettingsStore = create(
+  persist(settingsStore, {
+    name: 'settings-storage', // unique name
+    storage: createJSONStorage(() => localStorage), // use localStorage
+  })
+)
+
 export default useLocationStore
+export { useSettingsStore }

@@ -32,20 +32,19 @@ const LocationPage = (props: LocationProps) => {
   // Import city's name from the URL
   const { cityName } = useParams<{ cityName: string }>()
   const city = cityName ? cityName.replace(/-/g, ' ').replace(/:/g, '') : ''
-  console.log(city)
 
   // ? Variable to check if API calls are done
   const [isLoading, setIsLoading] = useState(true)
   // ? Pulls location data from different city if currentLoc is false
 
-  const showError = () => {
-    setBannerProps({
-      message: 'An error occurred.',
-      type: 'error',
-      onClose: () => setShowBanner(false),
-    })
-    setShowBanner(true)
-  }
+  // const showError = () => {
+  //   setBannerProps({
+  //     message: 'An error occurred.',
+  //     type: 'error',
+  //     onClose: () => setShowBanner(false),
+  //   })
+  //   setShowBanner(true)
+  // }
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -64,18 +63,12 @@ const LocationPage = (props: LocationProps) => {
     fetchLocation()
   }, [fetchLocationData])
 
-  if (!selectedLocation && props.currentLoc) {
-    return <div>Error: Could not fetch current location</div>
-  }
-
-  // const currentLocation = locations[0]
-
   return (
     <>
       {showBanner && <Banner {...bannerProps} />}
       <div className="mx-auto flex min-h-screen flex-col items-center justify-center bg-bgwhite">
         {/* Content For Page */}
-        <button onClick={showError}>Show Error</button>
+        {/* <button onClick={showError}>Show Error</button> */}
 
         <div
           className="flex h-screen w-96 items-center justify-center bg-cardgray shadow-xl"
