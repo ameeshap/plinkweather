@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.small-svg {
+  width: 45px;
+  height: 45px;
+}
+
+.medium-svg {
+  width: 60px;
+  height: 60px;
+}
