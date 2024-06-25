@@ -22,7 +22,7 @@ const FormSchema = z.object({
 
 export function SwitchForm() {
   const setSevereWeather = useSettingsStore((state) => state.setSevereWeather)
-  const severeWeather = useSettingsStore((state) => state.severeWeather)
+  // const severeWeather = useSettingsStore((state) => state.severeWeather)
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {

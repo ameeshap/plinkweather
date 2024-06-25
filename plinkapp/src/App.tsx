@@ -4,8 +4,6 @@ import MapPage from '@/pages/MapPage'
 import ErrorPage from './pages/ErrorPage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
-import HourlyWeather from './components/HourlyForecastBack'
-
 import './index.css'
 import SettingsPage from './pages/SettingsPage'
 
@@ -24,7 +22,6 @@ function App() {
             element={<LocationPage currentLoc={false} />}
           />
           <Route path="/map" element={<MapPage />} />
-          <Route path="/hourly" element={<HourlyWeather />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 import FeatureWeatherCard from '@/components/FeatureWeatherCard'
 import LocationCard from '@/components/LocationCard'
-import Banner from '@/components/Banner'
+// import Banner from '@/components/Banner'
 import MapCard from '@/components/card/MapCard'
 
 // ? Type and data from localStorage store
