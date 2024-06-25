@@ -3,4 +3,4 @@
 ## Technologies Used
 - NEXT.js, TailwindCSS
 - DaisyUI, ShadCN components
-- OpenWeather API
+- OpenWeather API, Google Maps API
