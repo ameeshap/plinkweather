@@ -9,6 +9,9 @@ import MapCard from '@/components/card/MapCard'
 // Type and data from localStorage store
 import { locationData } from '@/components/store'
 import useLocationStore from '@/components/store'
+import HourlyForecast from '@/components/HourlyForecastFront'
+import HourlyWeather from '@/components/HourlyForecastBack'
+import WeeklyWeather from '@/components/WeeklyForecastBack'
 
 interface LocationProps {
   currentLoc: boolean
@@ -65,7 +68,7 @@ const LocationPage = (props: LocationProps) => {
         <button onClick={showError}>Show Error</button>
 
         <div
-          className="flex h-screen w-96 items-center justify-center bg-cardgray shadow-xl"
+          className="flex h-screen w-96 flex-col items-center justify-center bg-cardgray shadow-xl"
           style={{
             position: 'relative',
             width: '393px',
@@ -78,12 +81,16 @@ const LocationPage = (props: LocationProps) => {
             temp={currentLocation.temp || 0}
           />
 
+          <WeeklyWeather></WeeklyWeather>
+
+          <HourlyWeather></HourlyWeather>
+
           <FeatureWeatherCard
             img_src="../src/assets/waves.svg"
             condition="Humidity"
             value={`${currentLocation.humidity}%`}
             left="20px"
-            top="1000px"
+            top="1150px"
             color="bg-tempblue"
           ></FeatureWeatherCard>
 
@@ -92,7 +99,7 @@ const LocationPage = (props: LocationProps) => {
             condition="Wind Speed"
             value={`${currentLocation.wind} mph`}
             left="200px"
-            top=""
+            top="1150px"
             color="bg-tempceladon"
           ></FeatureWeatherCard>
           <FeatureWeatherCard
@@ -100,7 +107,7 @@ const LocationPage = (props: LocationProps) => {
             condition="Visibility"
             value={`${currentLocation.visibility}`}
             left="200px"
-            top="1000px"
+            top="980px"
             color="bg-tempperi"
           ></FeatureWeatherCard>
           <FeatureWeatherCard
@@ -108,10 +115,16 @@ const LocationPage = (props: LocationProps) => {
             condition="Feels Like"
             value={`${currentLocation.feels_like}°F`}
             left="20px"
-            top="2000"
+            top="980px"
             color="bg-tempplum"
           ></FeatureWeatherCard>
-          <MapCard></MapCard>
+          <MapCard
+            height="341px"
+            width="347px"
+            borderR="20px"
+            top="400px"
+            z="0"
+          ></MapCard>
         </div>
 
         {props.currentLoc ? (
