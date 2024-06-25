@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.15% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/26</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.15% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/26</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,20 +98,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
@@ -122,21 +122,21 @@ interface BannerProps {
   onClose: () =&gt; void;
 }
 &nbsp;
-const Banner = <span class="fstat-no" title="function not covered" >({ message, type, onClose } : BannerProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  let bannerClass = 'banner';</span>
-<span class="cstat-no" title="statement not covered" >  if (type === 'error') bannerClass += ' error';</span>
-<span class="cstat-no" title="statement not covered" >  else if (type === 'success') bannerClass += ' success';</span>
-<span class="cstat-no" title="statement not covered" >  // Add more types as needed</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className={bannerClass}style={{</span>
-<span class="cstat-no" title="statement not covered" >      borderRadius: '20px',</span>
-<span class="cstat-no" title="statement not covered" >    }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p&gt;{message}&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button onClick={onClose}&gt;X&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+const Banner = ({ message, type, onClose } : BannerProps) =&gt; {
+  let bannerClass = 'banner';
+  if (type === 'error') bannerClass += ' error';
+  else if (type === 'success') bannerClass += ' success';
+  // Add more types as needed
+&nbsp;
+  return (
+    &lt;div className={bannerClass}style={{
+      borderRadius: '20px',
+    }}&gt;
+      &lt;p&gt;{message}&lt;/p&gt;
+      &lt;button onClick={onClose}&gt;X&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
 &nbsp;
 export default Banner;</pre></td></tr></table></pre>
 
@@ -145,7 +145,7 @@ export default Banner;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-24T21:20:34.734Z
+                at 2024-06-25T02:13:28.993Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
