@@ -126,7 +126,7 @@ const LocationPage = (props: LocationProps) => {
               <FeatureWeatherCard
                 img_src="../src/assets/sing_waterdrop.svg"
                 condition="Visibility"
-                value={`${selectedLocation.visibility}`}
+                value={`${selectedLocation.visibility} km`}
                 left="200px"
                 top="980px"
                 color="bg-tempperi"
