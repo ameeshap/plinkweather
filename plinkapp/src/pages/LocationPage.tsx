@@ -10,8 +10,7 @@ import MapCard from '@/components/card/MapCard'
 // ? Type and data from localStorage store
 import { locationData, fetchLocationData } from '@/components/store'
 import useLocationStore from '@/components/store'
-import HourlyForecast from '@/components/HourlyForecastFront'
-import HourlyWeather from '@/components/HourlyForecastBack'
+import HourlyForecast from '@/components/HourlyForecast'
 import WeeklyWeather from '@/components/WeeklyForecast'
 import weatherIcons from '@/components/weatherIcons'
 
@@ -40,15 +39,6 @@ const LocationPage = (props: LocationProps) => {
   // ? Variable to check if API calls are done
   const [isLoading, setIsLoading] = useState(true)
   // ? Pulls location data from different city if currentLoc is false
-
-  // const showError = () => {
-  //   setBannerProps({
-  //     message: 'An error occurred.',
-  //     type: 'error',
-  //     onClose: () => setShowBanner(false),
-  //   })
-  //   setShowBanner(true)
-  // }
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -95,12 +85,15 @@ const LocationPage = (props: LocationProps) => {
                 temp={selectedLocation.temp || 0}
               />
               {/* Hourly Weather Carousel */}
-              {/* <HourlyWeather /> */}
+              <HourlyForecast
+                lat={selectedLocation.lat}
+                long={selectedLocation.long}
+              />
 
               {/* Weekly Weather Carousel */}
               <WeeklyWeather
                 lat={selectedLocation.lat}
-                lng={selectedLocation.long}
+                long={selectedLocation.long}
               />
               <FeatureWeatherCard
                 img_src="../src/assets/waves.svg"

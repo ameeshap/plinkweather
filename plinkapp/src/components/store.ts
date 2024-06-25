@@ -23,6 +23,13 @@ export type WeatherDay = {
   rainchance: number
 }
 
+export type Hour = {
+  time: string
+  temp: number
+  windspeed: number
+  precipitation: string
+}
+
 // ? Type definitions for location
 export type locationData = {
   city: string
@@ -146,7 +153,36 @@ export const fetchLocationData = async (
     throw new Error('Either latitude/longitude or city name must be provided')
   }
 }
+export const fetchHourlyWeatherData = async (
+  latitude: number,
+  longitude: number
+) => {
+  try {
+    const response = await axios.get(
+      `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${latitude}&lon=${longitude}&cnt=24&units=imperial&appid=${process.env.OPENWEATHER_API_KEY}`
+    )
 
+    const transformedData: Hour[] = []
+
+    for (let i = 0; i < 24; i++) {
+      transformedData.push({
+        time: new Date(response.data.list[i].dt * 1000).toLocaleTimeString([], {
+          hour: 'numeric',
+          minute: '2-digit',
+        }),
+        temp: response.data.list[i].main.temp,
+        windspeed: response.data.list[i].wind.speed,
+        precipitation: weatherIcons.get(
+          response.data.list[i].weather[0].id
+        ) as string,
+      })
+    }
+
+    return transformedData
+  } catch (error) {
+    throw new Error('Failed to fetch weather data')
+  }
+}
 export const fetchWeeklyWeatherData = async (
   latitude: number,
   longitude: number

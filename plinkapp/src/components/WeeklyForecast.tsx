@@ -1,14 +1,10 @@
 //import { dir } from 'console'
 import { useEffect, useState } from 'react'
-import useLocationStore, {
-  fetchWeeklyWeatherData,
-  WeatherDay,
-  locationData,
-} from './store'
+import { fetchWeeklyWeatherData, WeatherDay } from './store'
 
 interface WeeklyForecastProps {
   lat: number
-  lng: number
+  long: number
 }
 
 const WeeklyForecast = (props: WeeklyForecastProps) => {
@@ -16,12 +12,12 @@ const WeeklyForecast = (props: WeeklyForecastProps) => {
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    fetchWeeklyWeatherData(props.lat, props.lng).then((data) =>
+    fetchWeeklyWeatherData(props.lat, props.long).then((data) =>
       setForecast(data)
     )
     setLoading(false)
     console.log(forecast)
-  }, [props.lat, props.lng])
+  }, [props.lat, props.long])
 
   return (
     <div className="w-screen rounded-lg bg-bgwhite py-4 pl-4">
