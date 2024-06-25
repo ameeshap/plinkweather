@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Hour, fetchHourlyWeatherData } from './store'
-import HourlyWeather from './HourlyForecastBack'
 
 interface HourlyForecastProps {
   lat: number
