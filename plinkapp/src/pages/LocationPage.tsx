@@ -96,7 +96,7 @@ const LocationPage = (props: LocationProps) => {
                 long={selectedLocation.long}
               />
               <FeatureWeatherCard
-                img_src="../src/assets/waves.svg"
+                img_src="/assets/waves.svg"
                 condition="Humidity"
                 value={`${selectedLocation.humidity}%`}
                 left="20px"
@@ -104,7 +104,7 @@ const LocationPage = (props: LocationProps) => {
                 color="bg-tempblue"
               ></FeatureWeatherCard>
               <FeatureWeatherCard
-                img_src="../src/assets/wind.svg"
+                img_src="/assets/wind.svg"
                 condition="Wind Speed"
                 value={`${selectedLocation.wind} mph`}
                 left="200px"
@@ -112,7 +112,7 @@ const LocationPage = (props: LocationProps) => {
                 color="bg-tempceladon"
               ></FeatureWeatherCard>
               <FeatureWeatherCard
-                img_src="../src/assets/sing_waterdrop.svg"
+                img_src="/assets/sing_waterdrop.svg"
                 condition="Visibility"
                 value={`${selectedLocation.visibility / 1000} km`}
                 left="200px"
@@ -120,7 +120,7 @@ const LocationPage = (props: LocationProps) => {
                 color="bg-tempperi"
               ></FeatureWeatherCard>
               <FeatureWeatherCard
-                img_src="../src/assets/thermometer.svg"
+                img_src="/assets/thermometer.svg"
                 condition="Feels Like"
                 value={`${selectedLocation.feels_like}°F`}
                 left="20px"
