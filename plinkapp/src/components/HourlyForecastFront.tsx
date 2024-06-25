@@ -16,7 +16,10 @@ const HourlyForecast: React.FC<HourlyForecastProps> = ({ hours }) => {
   // console.log(hours)
 
   return (
-    <div className="flex space-x-4 overflow-x-scroll bg-bgwhite p-4">
+    <div className="flex space-x-4 overflow-x-scroll bg-cardgray p-4" style={{
+      
+      width:'393px',
+      left: '20px'}}>
       {hours.map((hour) => (
         <div>
           <p className="flex h-32 w-24 flex-shrink-0 flex-col items-center justify-center rounded-md bg-tempblue shadow-md">

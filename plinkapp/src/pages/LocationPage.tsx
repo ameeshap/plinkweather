@@ -10,6 +10,10 @@ import MapCard from '@/components/card/MapCard'
 // ? Type and data from localStorage store
 import { locationData, fetchLocationData } from '@/components/store'
 import useLocationStore from '@/components/store'
+import HourlyForecast from '@/components/HourlyForecastFront'
+import HourlyWeather from '@/components/HourlyForecastBack'
+import WeeklyWeather from '@/components/WeeklyForecastBack'
+import weatherIcons from '@/components/weatherIcons'
 
 interface LocationProps {
   currentLoc: boolean
@@ -62,6 +66,9 @@ const LocationPage = (props: LocationProps) => {
     }
     fetchLocation()
   }, [fetchLocationData])
+  const getIconPath = (weatherCode: any) => {
+    return weatherIcons.get(weatherCode) || '../src/assets/default_icon.svg'
+  }
 
   return (
     <>
@@ -71,7 +78,7 @@ const LocationPage = (props: LocationProps) => {
         {/* <button onClick={showError}>Show Error</button> */}
 
         <div
-          className="flex h-screen w-96 items-center justify-center bg-cardgray shadow-xl"
+          className="flex h-screen w-96 flex-col items-center justify-center bg-cardgray shadow-xl"
           style={{
             position: 'relative',
             width: '393px',
@@ -79,18 +86,22 @@ const LocationPage = (props: LocationProps) => {
           }}
         >
           {!isLoading && selectedLocation ? (
-            <div>
+            <div className="flex flex-col items-center justify-center space-y-4">
               <LocationCard
                 city={selectedLocation.city}
-                img_src="../src/assets/full_sun.svg"
+                img_src={getIconPath(selectedLocation.currWeath)}
                 temp={selectedLocation.temp || 0}
               />
+
+              <HourlyWeather></HourlyWeather>
+
+              <WeeklyWeather></WeeklyWeather>
               <FeatureWeatherCard
                 img_src="../src/assets/waves.svg"
                 condition="Humidity"
                 value={`${selectedLocation.humidity}%`}
                 left="20px"
-                top="1000px"
+                top="1150px"
                 color="bg-tempblue"
               ></FeatureWeatherCard>
               <FeatureWeatherCard
@@ -98,26 +109,32 @@ const LocationPage = (props: LocationProps) => {
                 condition="Wind Speed"
                 value={`${selectedLocation.wind} mph`}
                 left="200px"
-                top=""
+                top="1150px"
                 color="bg-tempceladon"
               ></FeatureWeatherCard>
               <FeatureWeatherCard
                 img_src="../src/assets/sing_waterdrop.svg"
                 condition="Visibility"
-                value={`${selectedLocation.visibility}`}
+                value={`${selectedLocation.visibility} km`}
                 left="200px"
-                top="1000px"
+                top="980px"
                 color="bg-tempperi"
               ></FeatureWeatherCard>
               <FeatureWeatherCard
-                img_src="../src/assets/fahrenheit.svg"
+                img_src="../src/assets/thermometer.svg"
                 condition="Feels Like"
                 value={`${selectedLocation.feels_like}°F`}
                 left="20px"
-                top="2000"
+                top="980px"
                 color="bg-tempplum"
               ></FeatureWeatherCard>
-              <MapCard></MapCard>
+              <MapCard
+                height="341px"
+                width="347px"
+                borderR="20px"
+                top="400px"
+                z="0"
+              ></MapCard>
             </div>
           ) : (
             <p>Loading</p>

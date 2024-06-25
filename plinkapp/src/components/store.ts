@@ -23,6 +23,7 @@ export type locationData = {
   humidity: number
   feels_like: number
   visibility: number
+  currWeath: number
 }
 
 type locationState = {
@@ -103,6 +104,7 @@ export const fetchLocationData = async (
       state,
       lat,
       long,
+      currWeath:weatherData.weather[0].id,
       temp: Math.floor(weatherData.main.temp),
       wind: Math.floor(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
@@ -121,6 +123,7 @@ export const fetchLocationData = async (
       state,
       lat: latitude,
       long: longitude,
+      currWeath: weatherData.weather[0].id,
       temp: Math.floor(weatherData.main.temp),
       wind: Math.floor(weatherData.wind.speed),
       humidity: weatherData.main.humidity,

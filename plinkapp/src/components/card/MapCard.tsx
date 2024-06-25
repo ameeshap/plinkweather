@@ -4,11 +4,11 @@ import { LayersControl, MapContainer, TileLayer, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { LatLngExpression } from 'leaflet'
 
-const apiKey = process.env.VITE_OPENWEATHER_API_KEY;
-const temperatureLayer = 'temp_new';
-const precipitationLayer = 'precipitation_new';
-const cloudLayer = 'clouds_new';
-const windspeed = 'wind_new';
+ const apiKey = process.env.VITE_OPENWEATHER_API_KEY
+const temperatureLayer = 'temp_new'
+const precipitationLayer = 'precipitation_new'
+const cloudLayer = 'clouds_new'
+const windspeed = 'wind_new'
 
 const tempUrl = `https://tile.openweathermap.org/map/${temperatureLayer}/{z}/{x}/{y}.png?appid=${apiKey}`
 const precipUrl = `https://tile.openweathermap.org/map/${precipitationLayer}/{z}/{x}/{y}.png?appid=${apiKey}`
@@ -20,7 +20,6 @@ const { BaseLayer, Overlay } = LayersControl
 interface MapPositionProps {
   coords: LatLngExpression
 }
-
 
 function SetMapPosition({ coords }: MapPositionProps) {
   const map = useMap()
@@ -34,14 +33,20 @@ function SetMapPosition({ coords }: MapPositionProps) {
   return null
 }
 
+interface MapCardProps {
+  height: string
+  width: string
+  borderR: string
 
-function MapCard() {
+  top: number|string
+  z: string
+}
+
+const MapCard: React.FC<MapCardProps> = ({ height, width, borderR, z, top }) => {
   const [userLocation, setLocation] = useState<{
-      latitude: number
-     longitude: number
+    latitude: number
+    longitude: number
   } | null>(null)
-
-
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -73,12 +78,11 @@ function MapCard() {
         zoom={13}
         scrollWheelZoom={false}
         style={{
-          height: '341px',
-          width: '347px',
-          borderRadius: '20px',
-          position: 'relative',
-          top: '600px',
-          zIndex: '0'
+          height: height,
+          width: width,
+          borderRadius: borderR,
+          top: top,
+          zIndex: z,
         }}
       >
         {coords && <SetMapPosition coords={coords} />}

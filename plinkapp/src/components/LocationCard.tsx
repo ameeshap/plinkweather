@@ -23,7 +23,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city, temp, img_src }) => {
       <figure>
         <img
           src={img_src}
-          className="h-full w-full"
           style={{
             width: '170px',
             height: '170px',
