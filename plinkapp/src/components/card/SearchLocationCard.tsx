@@ -11,13 +11,13 @@ interface SearchLocationCardProps {
 }
 
 const SearchLocationCard: React.FC<SearchLocationCardProps> = (props) => {
-  const locations = useLocationStore((state) => state.locations)
-  const currentLoc = useLocationStore((state) => state.currentLoc)
   const fetchCurrentLoc = useLocationStore(
     (state) => state.fetchCurrentLocation
   )
-
-  const [selectedLoc, setSelectedLoc] = useState<locationData | null>()
+  const locations = useLocationStore((state) => state.locations)
+  const [selectedLoc, setSelectedLoc] = useState<locationData | null>(
+    locations[0] ? locations[0] : null
+  )
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [localTemp, setLocalTemp] = useState<number | null>()
   const [localTimeZone, setLocalTimeZone] = useState<string>()
@@ -27,33 +27,28 @@ const SearchLocationCard: React.FC<SearchLocationCardProps> = (props) => {
 
   useEffect(() => {
     const fetchTemperature = async () => {
-      if (props.currentLoc) {
+      if (props.currentLoc && !selectedLoc) {
         const value = await fetchCurrentLoc()
         setSelectedLoc(value)
         setIsLoading(false)
-      } else {
+      } else if (props.city && !props.currentLoc) {
         const value = await fetchLocationData(props.city)
         setSelectedLoc(value)
         setIsLoading(false)
       }
     }
     fetchTemperature()
-    console.log(selectedLoc)
   }, [props.currentLoc])
 
   useEffect(() => {
     const setTime = async () => {
-      if (selectedLoc) {
+      if (selectedLoc && !isLoading) {
         setLocalTemp(selectedLoc.temp)
-        setLocalTimeZone(lookupViaCity(selectedLoc.city)[0].timezone)
+        setLocalTimeZone(lookupViaCity(selectedLoc.city)[0]?.timezone)
         setLocalTime(DateTime.local().setZone(localTimeZone))
-      } else {
-        const value = await fetchLocationData(props.city)
-        setSelectedLoc(value)
       }
     }
     setTime()
-    console.log(selectedLoc)
   }, [selectedLoc])
 
   // Functionality for color change with tempuerature
@@ -64,27 +59,25 @@ const SearchLocationCard: React.FC<SearchLocationCardProps> = (props) => {
     return 'bg-tempblue'
   }
 
-  function locationClickHandler(e: any) {
-    console.log('Selected: ', props.city)
-  }
-
   return (
     <>
       {!isLoading && selectedLoc ? (
-        <Link to={`/search/:${selectedLoc.city.toLowerCase()}`}>
+        <Link
+          to={`/search/:${selectedLoc.city.toLowerCase().replace(/\s+/g, '-')}`}
+        >
           <div
             className={
               'mx-2 mt-4 flex h-24 w-auto flex-grow flex-row justify-between rounded-2xl pl-4' +
               ' ' +
               (localTemp !== null ? tempColorPicker(selectedLoc.temp) : '')
             }
-            onClick={(event) => locationClickHandler(event)}
           >
             <div className="flex flex-col">
               <p className="flex pt-2 text-3xl font-semibold italic">
                 {selectedLoc.city}
               </p>
               <p className="">{localTime.toFormat('h:mm a')}</p>
+              {props.currentLoc ? <p>Current Location</p> : null}
             </div>
             <p className="flex self-center pr-5 text-[3rem] font-semibold">
               {selectedLoc.temp !== null ? (

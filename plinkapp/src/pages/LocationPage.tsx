@@ -13,7 +13,6 @@ import useLocationStore from '@/components/store'
 
 interface LocationProps {
   currentLoc: boolean
-  city?: string
 }
 
 const LocationPage = (props: LocationProps) => {
@@ -28,8 +27,12 @@ const LocationPage = (props: LocationProps) => {
     (state) => state.fetchCurrentLocation
   )
 
-  var currentLocation = useLocationStore((state) => state.currentLoc)
   const [selectedLocation, setSelectedLocation] = useState<locationData>()
+
+  // Import city's name from the URL
+  const { cityName } = useParams<{ cityName: string }>()
+  const city = cityName ? cityName.replace(/-/g, ' ').replace(/:/g, '') : ''
+  console.log(city)
 
   // ? Variable to check if API calls are done
   const [isLoading, setIsLoading] = useState(true)
@@ -47,22 +50,21 @@ const LocationPage = (props: LocationProps) => {
   useEffect(() => {
     const fetchLocation = async () => {
       if (props.currentLoc) {
-        await fetchCurrentLoc()
+        console.log('currentLoc')
+        const value = await fetchCurrentLoc()
+        setSelectedLocation(value)
         setIsLoading(false)
-      } else {
-        const value = await fetchLocationData(props.city)
+      } else if (city && !props.currentLoc) {
+        console.log('customLoc')
+        const value = await fetchLocationData(city)
         setSelectedLocation(value)
         setIsLoading(false)
       }
     }
     fetchLocation()
-  }, [fetchCurrentLoc])
+  }, [fetchLocationData])
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (!currentLocation) {
+  if (!selectedLocation && props.currentLoc) {
     return <div>Error: Could not fetch current location</div>
   }
 
@@ -83,46 +85,50 @@ const LocationPage = (props: LocationProps) => {
             height: '1793px',
           }}
         >
-          <LocationCard
-            city={currentLocation.city}
-            img_src="../src/assets/full_sun.svg"
-            temp={currentLocation.temp || 0}
-          />
-
-          <FeatureWeatherCard
-            img_src="../src/assets/waves.svg"
-            condition="Humidity"
-            value={`${currentLocation.humidity}%`}
-            left="20px"
-            top="1000px"
-            color="bg-tempblue"
-          ></FeatureWeatherCard>
-
-          <FeatureWeatherCard
-            img_src="../src/assets/wind.svg"
-            condition="Wind Speed"
-            value={`${currentLocation.wind} mph`}
-            left="200px"
-            top=""
-            color="bg-tempceladon"
-          ></FeatureWeatherCard>
-          <FeatureWeatherCard
-            img_src="../src/assets/sing_waterdrop.svg"
-            condition="Visibility"
-            value={`${currentLocation.visibility}`}
-            left="200px"
-            top="1000px"
-            color="bg-tempperi"
-          ></FeatureWeatherCard>
-          <FeatureWeatherCard
-            img_src="../src/assets/fahrenheit.svg"
-            condition="Feels Like"
-            value={`${currentLocation.feels_like}°F`}
-            left="20px"
-            top="2000"
-            color="bg-tempplum"
-          ></FeatureWeatherCard>
-          <MapCard></MapCard>
+          {!isLoading && selectedLocation ? (
+            <div>
+              <LocationCard
+                city={selectedLocation.city}
+                img_src="../src/assets/full_sun.svg"
+                temp={selectedLocation.temp || 0}
+              />
+              <FeatureWeatherCard
+                img_src="../src/assets/waves.svg"
+                condition="Humidity"
+                value={`${selectedLocation.humidity}%`}
+                left="20px"
+                top="1000px"
+                color="bg-tempblue"
+              ></FeatureWeatherCard>
+              <FeatureWeatherCard
+                img_src="../src/assets/wind.svg"
+                condition="Wind Speed"
+                value={`${selectedLocation.wind} mph`}
+                left="200px"
+                top=""
+                color="bg-tempceladon"
+              ></FeatureWeatherCard>
+              <FeatureWeatherCard
+                img_src="../src/assets/sing_waterdrop.svg"
+                condition="Visibility"
+                value={`${selectedLocation.visibility}`}
+                left="200px"
+                top="1000px"
+                color="bg-tempperi"
+              ></FeatureWeatherCard>
+              <FeatureWeatherCard
+                img_src="../src/assets/fahrenheit.svg"
+                condition="Feels Like"
+                value={`${selectedLocation.feels_like}°F`}
+                left="20px"
+                top="2000"
+                color="bg-tempplum"
+              ></FeatureWeatherCard>
+              <MapCard></MapCard>
+            </div>
+          ) : (
+            <p>Loading</p>
+          )}
         </div>
 
         {props.currentLoc ? (

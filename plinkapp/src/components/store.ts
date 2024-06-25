@@ -33,14 +33,15 @@ type locationState = {
   removeLocation: (city: string) => void
   updateLocationData: (city: string) => void
   updateAllLocationData: () => void
-  fetchCurrentLocation: () => Promise<locationData | null>
+  fetchCurrentLocation: () => Promise<locationData>
 }
 
-type settingsState = {
+export type settingsData = {
   severeWeather: boolean
-  rain: boolean
   setSevereWeather: (setting: boolean) => void
 }
+
+type settingsState = {}
 
 // ? Function Definitions
 setDefaults({
@@ -64,7 +65,7 @@ const fetchWeatherData = async (
   return data
 }
 
-const fetchCityState = async (latitude: number, longitude: number) => {
+export const fetchCityState = async (latitude: number, longitude: number) => {
   const response = await fromLatLng(latitude, longitude)
   const addressComponents = response.results[0].address_components
   let city = ''
@@ -93,7 +94,10 @@ export const fetchLocationData = async (
   longitude?: number
 ): Promise<locationData> => {
   if (city) {
+    console.log('Fetching Lat Lng from City', city)
     const { latitude: lat, longitude: long } = await fetchLatLngFromCity(city)
+    console.log('Fetching weather data from City')
+
     const weatherData = await fetchWeatherData(lat, long, OPENWEATHER_API_KEY!)
     const { city: fetchedCity, state } = await fetchCityState(lat, long)
     return {
@@ -199,7 +203,7 @@ const locationStore: StateCreator<
 
     set({ locations: updatedLocations })
   },
-  fetchCurrentLocation: async (): Promise<locationData | null> => {
+  fetchCurrentLocation: async (): Promise<locationData> => {
     return new Promise((resolve, _) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -216,17 +220,12 @@ const locationStore: StateCreator<
               resolve(currentLocation)
             } catch (error) {
               console.error('Error:', error)
-              resolve(null)
             }
           },
           (error) => {
             console.error('Error getting geolocation: ', error)
-            resolve(null)
           }
         )
-      } else {
-        console.error('Geolocation is not supported by this browser.')
-        resolve(null)
       }
     })
   },
