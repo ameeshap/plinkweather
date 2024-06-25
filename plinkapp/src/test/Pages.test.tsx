@@ -9,6 +9,7 @@ import SearchPage from '@/pages/SearchPage';
 import SettingsPage from '@/pages/SettingsPage';
 import { BrowserRouter as Router } from 'react-router-dom'
 
+
 /* Error Page */
 // Mock the Navbar component if necessary
 vi.mock('@/components/Navbar', () => ({
@@ -22,6 +23,7 @@ describe('ErrorPage', () => {
     expect(errorMessage).toBeInTheDocument();
   });
 })
+
 
 /* Location Page */
 
@@ -137,8 +139,7 @@ vi.mock('@googlemaps/js-api-loader', () => {
       expect(input).toHaveValue('Houston')
     })
     */
-  
-    
+
     /*
     it('displays search suggestions', async () => {
       render(
@@ -176,5 +177,3 @@ vi.mock('@googlemaps/js-api-loader', () => {
      // expect(mockOnSelect).toHaveBeenCalledWith({ lat: expect.any(Number), lng: expect.any(Number) })
     }) */
 })
-
- 
