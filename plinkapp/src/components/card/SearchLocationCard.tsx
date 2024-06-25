@@ -4,6 +4,7 @@ import { DateTime } from 'luxon'
 import { lookupViaCity } from 'city-timezones'
 import useLocationStore, { fetchLocationData, locationData } from '../store'
 
+
 interface SearchLocationCardProps {
   // Variables for location
   currentLoc: boolean
