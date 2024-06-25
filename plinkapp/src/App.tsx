@@ -16,9 +16,9 @@ function App() {
         <Routes>
           <Route index element={<LocationPage currentLoc />} />
           <Route path="/" element={<LocationPage currentLoc />} />
-          {/* Need to implement dynamic routing for the locations */}
           {/* <Route path="/" element={}/> */}
           <Route path="/search" element={<SearchPage />} />
+          {/* Dynamic routing for different locaitons */}
           <Route
             path="/search/:cityName"
             element={<LocationPage currentLoc={false} />}

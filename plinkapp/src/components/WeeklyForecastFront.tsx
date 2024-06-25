@@ -15,7 +15,7 @@ interface WeeklyForecastProps {
 
 const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecast }) => {
   return (
-    <div className="rounded-lg bg-backgray p-4 shadow-md" style={{
+    <div className="rounded-lg bg-backgray p-4 " style={{
       width: '393px',
     }}>
       <div className="overflow-x-auto">

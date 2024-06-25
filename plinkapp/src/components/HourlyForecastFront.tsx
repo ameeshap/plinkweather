@@ -1,8 +1,4 @@
 import React from 'react'
-//import axios from 'axios'
-
-//const API_URL = 'https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API_key}'
-//const API_KEY = '8679a3e4f001bb9961c1810bb6e10426'
 
 export interface Hour {
   time: string

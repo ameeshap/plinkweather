@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for plinkapp/src/pages/SettingsPage.tsx</title>
+    <title>Code coverage report for plinkapp/src/components/HourlyForecastBack.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">plinkapp/src/pages</a> SettingsPage.tsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">plinkapp/src/components</a> HourlyForecastBack.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/71</span>
+                <span class='fraction'>0/78</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/71</span>
+                <span class='fraction'>0/78</span>
             </div>
         
             
@@ -134,7 +134,14 @@
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -205,77 +212,91 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import Navbar from '@/components/Navbar.tsx'<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { zodResolver } from '@hookform/resolvers/zod'</span>
-<span class="cstat-no" title="statement not covered" >import { useForm } from 'react-hook-form'</span>
-<span class="cstat-no" title="statement not covered" >import { z } from 'zod'</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { useState, useEffect } from 'react'</span></span></span>
+<span class="cstat-no" title="statement not covered" >import axios from 'axios'</span>
+<span class="cstat-no" title="statement not covered" >import HourlyForecastFront, { Hour } from './HourlyForecastFront'</span>
+<span class="cstat-no" title="statement not covered" >import { weatherIcons } from './store'</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >import { Button } from '@/components/ui/button'</span>
-<span class="cstat-no" title="statement not covered" >import {</span>
-<span class="cstat-no" title="statement not covered" >  Form,</span>
-<span class="cstat-no" title="statement not covered" >  FormControl,</span>
-<span class="cstat-no" title="statement not covered" >  FormDescription,</span>
-<span class="cstat-no" title="statement not covered" >  FormField,</span>
-<span class="cstat-no" title="statement not covered" >  FormItem,</span>
-<span class="cstat-no" title="statement not covered" >  FormLabel,</span>
-<span class="cstat-no" title="statement not covered" >} from '@/components/ui/form'</span>
-<span class="cstat-no" title="statement not covered" >import { Switch } from '@/components/ui/switch'</span>
-<span class="cstat-no" title="statement not covered" >import { toast } from '@/components/ui/use-toast'</span>
+<span class="cstat-no" title="statement not covered" >const HourlyWeather: React.FC = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const [hours, setHours] = useState&lt;Hour[]&gt;([])</span>
+<span class="cstat-no" title="statement not covered" >  const [loading, setLoading] = useState&lt;boolean&gt;(true)</span>
+<span class="cstat-no" title="statement not covered" >  const [error, setError] = useState&lt;string | null&gt;(null)</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const FormSchema = z.object({</span>
-<span class="cstat-no" title="statement not covered" >  marketing_emails: z.boolean().default(false).optional(),</span>
-<span class="cstat-no" title="statement not covered" >  security_emails: z.boolean(),</span>
-<span class="cstat-no" title="statement not covered" >})</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const fetchWeatherData = async (latitude: number, longitude: number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        const response = await axios.get(</span>
+<span class="cstat-no" title="statement not covered" >          `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${latitude}&amp;lon=${longitude}&amp;cnt=24&amp;units=imperial&amp;appid=925cea5983a4d4da4ea3ffa502d82252`</span>
+<span class="cstat-no" title="statement not covered" >        )</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export function SwitchForm() {</span>
-<span class="cstat-no" title="statement not covered" >  const form = useForm&lt;z.infer&lt;typeof FormSchema&gt;&gt;({</span>
-<span class="cstat-no" title="statement not covered" >    resolver: zodResolver(FormSchema),</span>
-<span class="cstat-no" title="statement not covered" >    defaultValues: {</span>
-<span class="cstat-no" title="statement not covered" >      security_emails: true,</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >  })</span>
+<span class="cstat-no" title="statement not covered" >        const transformedData: Hour[] = []</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;Form {...form}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;form className="w-full space-y-6"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;h3 className="mb-4 text-lg font-medium"&gt;Notifications&lt;/h3&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;div className="space-y-4"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;FormField</span>
-<span class="cstat-no" title="statement not covered" >              control={form.control}</span>
-<span class="cstat-no" title="statement not covered" >              name="marketing_emails"</span>
-<span class="cstat-no" title="statement not covered" >              render={({ field }: any) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >                &lt;FormItem className="flex flex-row items-center justify-between rounded-lg border p-4"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;div className="space-y-0.5"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    &lt;FormLabel className="text-base"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                      Severe Weather Alerts</span>
-<span class="cstat-no" title="statement not covered" >                    &lt;/FormLabel&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    &lt;FormDescription&gt;</span>
-<span class="cstat-no" title="statement not covered" >                      Receive severe weather notifications for your area</span>
-<span class="cstat-no" title="statement not covered" >                    &lt;/FormDescription&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;FormControl&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    &lt;Switch</span>
-<span class="cstat-no" title="statement not covered" >                      checked={field.value}</span>
-<span class="cstat-no" title="statement not covered" >                      onCheckedChange={field.onChange}</span>
-<span class="cstat-no" title="statement not covered" >                    /&gt;</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;/FormControl&gt;</span>
-<span class="cstat-no" title="statement not covered" >                &lt;/FormItem&gt;</span>
-<span class="cstat-no" title="statement not covered" >              )}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/form&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Navbar selected="settings" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/Form&gt;</span>
-<span class="cstat-no" title="statement not covered" >  )</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; 24; i++) {</span>
+<span class="cstat-no" title="statement not covered" >          transformedData.push({</span>
+<span class="cstat-no" title="statement not covered" >            time: new Date(response.data.list[i].dt * 1000).toLocaleTimeString(</span>
+<span class="cstat-no" title="statement not covered" >              [],</span>
+<span class="cstat-no" title="statement not covered" >              {</span>
+<span class="cstat-no" title="statement not covered" >                hour: '2-digit',</span>
+<span class="cstat-no" title="statement not covered" >                minute: '2-digit',</span>
+<span class="cstat-no" title="statement not covered" >              }</span>
+<span class="cstat-no" title="statement not covered" >            ),</span>
+<span class="cstat-no" title="statement not covered" >            temp: response.data.list[i].main.temp,</span>
+<span class="cstat-no" title="statement not covered" >            windspeed: response.data.list[i].wind.speed,</span>
+<span class="cstat-no" title="statement not covered" >            precipitation: weatherIcons.get(</span>
+<span class="cstat-no" title="statement not covered" >              response.data.list[i].weather[0].id</span>
+<span class="cstat-no" title="statement not covered" >            ) as string,</span>
+<span class="cstat-no" title="statement not covered" >          })</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        setHours(transformedData)</span>
+<span class="cstat-no" title="statement not covered" >        setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >      } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >        setError('Failed to fetch weather data')</span>
+<span class="cstat-no" title="statement not covered" >        setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const getLocation = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (navigator.geolocation) {</span>
+<span class="cstat-no" title="statement not covered" >        navigator.geolocation.getCurrentPosition(</span>
+<span class="cstat-no" title="statement not covered" >          (position) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            const latitude = position.coords.latitude</span>
+<span class="cstat-no" title="statement not covered" >            const longitude = position.coords.longitude</span>
+<span class="cstat-no" title="statement not covered" >            fetchWeatherData(latitude, longitude)</span>
+<span class="cstat-no" title="statement not covered" >          },</span>
+<span class="cstat-no" title="statement not covered" >          (err) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            setError(err.message)</span>
+<span class="cstat-no" title="statement not covered" >            setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >          }</span>
+<span class="cstat-no" title="statement not covered" >        )</span>
+<span class="cstat-no" title="statement not covered" >      } else {</span>
+<span class="cstat-no" title="statement not covered" >        setError('Geolocation is not supported by this browser.')</span>
+<span class="cstat-no" title="statement not covered" >        setLoading(false)</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    getLocation()</span>
+<span class="cstat-no" title="statement not covered" >  }, [])</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  if (loading) {</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;p&gt;Loading...&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  if (error) {</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;p&gt;{error}&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return &lt;HourlyForecastFront hours={hours} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const SettingsPage = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return &lt;SwitchForm /&gt;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default SettingsPage</span>
+<span class="cstat-no" title="statement not covered" >export default HourlyWeather</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

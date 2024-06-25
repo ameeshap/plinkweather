@@ -3,14 +3,20 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from 'use-places-autocomplete'
+
 import useOnclickOutside from 'react-cool-onclickoutside'
 import { Loader } from '@googlemaps/js-api-loader'
 import Navbar from '@/components/Navbar'
 import SearchLocationCard from '@/components/card/SearchLocationCard'
 import { IoArrowBack } from 'react-icons/io5'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
+import useLocationStore from '@/components/store'
+import { fetchCityState } from '@/components/store'
+
 const PlacesAutocomplete = ({ onSelect }: any) => {
+  const navigate = useNavigate()
   const {
     ready,
     value,
@@ -38,10 +44,15 @@ const PlacesAutocomplete = ({ onSelect }: any) => {
       setValue(description, false)
       clearSuggestions()
 
-      getGeocode({ address: description }).then((results) => {
-        const { lat, lng } = getLatLng(results[0])
-        console.log('📍 Coordinates: ', { lat, lng })
-        onSelect({ lat, lng })
+      getGeocode({ address: description }).then(async (results) => {
+        try {
+          const { lat, lng } = getLatLng(results[0])
+          onSelect({ lat, lng })
+          const { city } = await fetchCityState(lat, lng)
+          navigate(`/search/:${city}`)
+        } catch (error) {
+          console.error('Error:', error)
+        }
       })
     }
 
@@ -86,19 +97,21 @@ const SearchPage = () => {
   const loader = new Loader({
     apiKey: GOOGLEMAPS_API_KEY as string,
     version: 'weekly',
-    libraries: ['places'],
+    libraries: ['places', 'geocoding'],
   })
 
+  const locations = useLocationStore((state) => state.locations)
   const [isGoogleMapsLoaded, setIsGoogleMapsLoaded] = useState(false)
 
   useEffect(() => {
-    loader.importLibrary('places').then(() => {
+    loader.importLibrary('geocoding').then(() => {
       setIsGoogleMapsLoaded(true)
     })
   }, [loader])
 
   const handleSelect = (coordinates: any) => {
-    console.log('Selected coordinates:', coordinates)
+    // useNavigate
+    console.log(coordinates)
   }
 
   return (
@@ -124,7 +137,15 @@ const SearchPage = () => {
         {/* Searched Location Cards */}
         {/* Default Current Location Card */}
         <section className="">
-          <SearchLocationCard city={'Houston'} state={'TX'} />
+          <SearchLocationCard currentLoc />
+          {/* Map for Locations in store */}
+          {locations.slice(1).map((location, index) => (
+            <SearchLocationCard
+              key={index}
+              currentLoc={false}
+              city={location.city}
+            />
+          ))}
         </section>
       </main>
       <Navbar selected="search" />
