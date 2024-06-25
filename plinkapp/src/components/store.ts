@@ -104,7 +104,7 @@ export const fetchLocationData = async (
       state,
       lat,
       long,
-      currWeath:weatherData.weather[0].id,
+      currWeath: weatherData.weather[0].id,
       temp: Math.floor(weatherData.main.temp),
       wind: Math.floor(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
@@ -242,7 +242,7 @@ const useLocationStore = create(
 const settingsStore: StateCreator<
   settingsState,
   [['zustand/persist', unknown]]
-> = (set, get) => ({
+> = (set, _) => ({
   severeWeather: false,
   setSevereWeather: (s: boolean) => set({ severeWeather: s }),
 })
