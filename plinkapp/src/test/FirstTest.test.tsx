@@ -3,6 +3,7 @@ import FirstTest from "../components/card/FirstTest";
 import {it, expect, vi} from 'vitest';
 import MapCard from '../components/card/MapCard'
 import SearchLocationCard  from '../components/card/SearchLocationCard';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 //fake test 
 it("should have hello world", ()=> {
@@ -107,6 +108,17 @@ vi.mock('city-timezones', () => {
   }
 })
 
+vi.mock('../store', () => {
+  return {
+    default: () => ({
+      fetchCurrentLocation: vi.fn(),
+      fetchLocationData: vi.fn(),
+      locations: [],
+    }),
+    fetchLocationData: vi.fn(),
+  };
+});
+
 describe('SearchLocationCard', () => {
   it('renders the city name and temperature', () => {
     render(<SearchLocationCard city="New York" state="NY" />)
@@ -114,6 +126,7 @@ describe('SearchLocationCard', () => {
     expect(screen.getByText('32°')).toBeInTheDocument()
   })
 })
+
 
 it('renders the local time', () => {
   render(<SearchLocationCard city="New York" state="NY" />)
