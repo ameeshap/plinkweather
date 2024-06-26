@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar.tsx'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 import FeatureWeatherCard from '@/components/FeatureWeatherCard'
 import LocationCard from '@/components/LocationCard'
@@ -15,10 +16,16 @@ import weatherIcons from '@/components/weatherIcons'
 import { fetchExtremeWeatherAlerts, useSettingsStore } from '@/components/store'
 
 import Activity from '@/components/SuggestionBack'
-import Clothing from '@/components/SuggestionFront'
 
 interface LocationProps {
   currentLoc: boolean
+}
+
+function alertToast(e: any) {
+  toast(e.target, {
+    duration: 4000,
+    position: 'top-center',
+  })
 }
 
 const LocationPage = (props: LocationProps) => {
@@ -56,17 +63,19 @@ const LocationPage = (props: LocationProps) => {
   }
 
   useEffect(() => {
+    console.log(severeWeather, selectedLocation, isLoading)
     const fetchAlerts = async () => {
       if (severeWeather && selectedLocation && !isLoading) {
         const value = await fetchExtremeWeatherAlerts(
           selectedLocation?.lat,
           selectedLocation?.long
         )
-        // RUN TOAST HERE
+        console.log('test')
+        console.log(value)
       }
     }
     fetchAlerts()
-  }, [setIsLoading])
+  }, [isLoading])
 
   return (
     <>

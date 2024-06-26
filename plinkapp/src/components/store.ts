@@ -219,7 +219,7 @@ export const fetchExtremeWeatherAlerts = async (
   latitude: number,
   longitude: number
 ) => {
-  const API_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${OPENWEATHER_API_KEY}&units=imperial`
+  const API_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude=current,minutely,hourly,daily,alerts&appid=${OPENWEATHER_API_KEY}`
   const response = await fetch(API_url)
   if (!response.ok) throw new Error('Failed to fetch weather alerts')
 
