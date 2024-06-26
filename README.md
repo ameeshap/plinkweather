@@ -6,4 +6,4 @@
 
 - NEXT.js, TailwindCSS
 - ShadCN as a component library
-- OpenWeather API
+- OpenWeather API, Google Maps API
