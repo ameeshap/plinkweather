@@ -42,8 +42,8 @@ const LocationPage = (props: LocationProps) => {
 
   // ? Variable to check if API calls are done
   const [isLoading, setIsLoading] = useState(true)
-  // ? Pulls location data from different city if currentLoc is false
 
+  // ? Pulls location data from different city if currentLoc is false
   useEffect(() => {
     const fetchLocation = async () => {
       if (props.currentLoc) {
@@ -58,10 +58,12 @@ const LocationPage = (props: LocationProps) => {
     }
     fetchLocation()
   }, [fetchLocationData])
+
   const getIconPath = (weatherCode: any) => {
-    return weatherIcons.get(weatherCode) || '../src/assets/default_icon.svg'
+    return weatherIcons.get(weatherCode) || '/assets/default_icon.svg'
   }
 
+  // ? Fetches weather alerts for the current location
   useEffect(() => {
     const fetchAlerts = async () => {
       if (severeWeather == true && selectedLocation && !isLoading) {
