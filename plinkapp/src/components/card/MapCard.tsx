@@ -4,16 +4,16 @@ import { LayersControl, MapContainer, TileLayer, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { LatLngExpression } from 'leaflet'
 
-const apiKey = process.env.VITE_OPENWEATHER_API_KEY!
+const apiKey = process.env.OPENWEATHER_API_KEY
 const temperatureLayer = 'temp_new'
 const precipitationLayer = 'precipitation_new'
 const cloudLayer = 'clouds_new'
 const windspeed = 'wind_new'
 
-const tempUrl = `https://tile.openweathermap.org/map/${temperatureLayer}/{z}/{x}/{y}.png?appid=e0c44f38d6b3f27486ac5df12f15dfbc`
-const precipUrl = `https://tile.openweathermap.org/map/${precipitationLayer}/{z}/{x}/{y}.png?appid=e0c44f38d6b3f27486ac5df12f15dfbc`
-const cloudUrl = `https://tile.openweathermap.org/map/${cloudLayer}/{z}/{x}/{y}.png?appid=e0c44f38d6b3f27486ac5df12f15dfbc`
-const windspeedUrl = `https://tile.openweathermap.org/map/${windspeed}/{z}/{x}/{y}.png?appid=e0c44f38d6b3f27486ac5df12f15dfbc`
+const tempUrl = `https://tile.openweathermap.org/map/${temperatureLayer}/{z}/{x}/{y}.png?appid=${apiKey}`
+const precipUrl = `https://tile.openweathermap.org/map/${precipitationLayer}/{z}/{x}/{y}.png?appid=${apiKey}`
+const cloudUrl = `https://tile.openweathermap.org/map/${cloudLayer}/{z}/{x}/{y}.png?appid=${apiKey}`
+const windspeedUrl = `https://tile.openweathermap.org/map/${windspeed}/{z}/{x}/{y}.png?appid=${apiKey}`
 
 const { BaseLayer, Overlay } = LayersControl
 

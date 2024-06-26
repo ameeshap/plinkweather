@@ -21,8 +21,8 @@ const HourlyForecast = (props: HourlyForecastProps) => {
         <>
           {hours.map((hour, key) => (
             <div key={key}>
-              <div className="flex h-32 w-24 shrink-0 flex-col items-center justify-center rounded-md bg-tempblue shadow-md">
-                <p className="font-inter text-lg">{hour.time}</p>
+              <div className="flex h-32 w-24 shrink-0 flex-col items-center justify-center rounded-md bg-tempceladon shadow-md">
+                <p className="font-inter font-bold text-lg">{hour.time}</p>
                 <img
                   //src="../src/assets/3_waterdrop.svg"
                   src={hour.precipitation}

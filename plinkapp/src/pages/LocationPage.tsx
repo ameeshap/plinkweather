@@ -80,7 +80,7 @@ const LocationPage = (props: LocationProps) => {
   return (
     <>
       {/* {showBanner && <Banner {...bannerProps} />} */}
-      <div className="flex min-h-screen w-screen flex-col items-center justify-center overflow-x-hidden bg-bgwhite">
+      <div className="flex min-h-screen w-screen flex-col items-center justify-center overflow-x-hidden bg-bgwhite pb-20">
         {/* Content For Page */}
         {/* App Name/Title */}
 
@@ -96,7 +96,9 @@ const LocationPage = (props: LocationProps) => {
               </h1>
             </div>
             <div className="flex h-full w-screen flex-col items-center">
-              <div className="h-auto w-80 pb-10">
+              <div className="h-auto w-80 pb-4">
+                {' '}
+                {/* Adjust the padding bottom here */}
                 <LocationCard
                   city={selectedLocation.city}
                   img_src={getIconPath(selectedLocation.currWeath)}
@@ -104,51 +106,58 @@ const LocationPage = (props: LocationProps) => {
                 />
               </div>
               {/* Hourly Weather Carousel */}
-              <HourlyForecast
-                lat={selectedLocation.lat}
-                long={selectedLocation.long}
-              />
-              <Activity />
-              {/* Weekly Weather Carousel */}
-              <div className="pb-10">
-                <WeeklyWeather
+              <div className="mb-2">
+                {' '}
+                {/* You can adjust the margin bottom here */}
+                <HourlyForecast
                   lat={selectedLocation.lat}
                   long={selectedLocation.long}
                 />
               </div>
-              <div className="mx-auto flex h-auto w-full flex-row flex-wrap justify-center gap-6">
-                <FeatureWeatherCard
-                  img_src="/assets/waves.svg"
-                  condition="Humidity"
-                  value={`${selectedLocation.humidity}%`}
-                  color="bg-tempblue"
+              <div className="mb-4">
+                <Activity />
+                {/* Weekly Weather Carousel */}
+
+                <WeeklyWeather
+                  lat={selectedLocation.lat}
+                  long={selectedLocation.long}
                 />
-                <FeatureWeatherCard
-                  img_src="/assets/wind.svg"
-                  condition="Wind Speed"
-                  value={`${selectedLocation.wind} mph`}
-                  color="bg-tempceladon"
-                />
-                <FeatureWeatherCard
-                  img_src="/assets/sing_waterdrop.svg"
-                  condition="Visibility"
-                  value={`${selectedLocation.visibility / 1000} km`}
-                  color="bg-tempperi"
-                />
-                <FeatureWeatherCard
-                  img_src="/assets/thermometer.svg"
-                  condition="Feels Like"
-                  value={`${selectedLocation.feels_like}°F`}
-                  color="bg-tempplum"
+                <div className="grid grid-cols-2 gap-4 p-5">
+                  <FeatureWeatherCard
+                    img_src="../public/assets/waves.svg"
+                    condition="Humidity"
+                    value={`${selectedLocation.humidity}%`}
+                    color="bg-tempceladon"
+                  />
+                  <FeatureWeatherCard
+                    img_src="../public/assets/wind.svg"
+                    condition="Wind Speed"
+                    value={`${selectedLocation.wind} mph`}
+                    color="bg-tempblue"
+                  />
+                  <FeatureWeatherCard
+                    img_src="../public/assets/sing_waterdrop.svg"
+                    condition="Visibility"
+                    value={`${selectedLocation.visibility / 1000} km`}
+                    color="bg-tempperi"
+                  />
+                  <FeatureWeatherCard
+                    img_src="../public/assets/sunset.svg"
+                    condition="Sunset"
+                    value={`${selectedLocation.feels_like}`}
+                    color="bg-tempplum"
+                  />
+                </div>
+              </div>
+              <div className="mb-4">
+                <MapCard
+                  height="341px"
+                  width="385px"
+                  borderR="20px"
+                  top="0px"
+                  z="0"
                 />
               </div>
-              <MapCard
-                height="341px"
-                width="347px"
-                borderR="20px"
-                top="350px"
-                z="0"
-              />
             </div>
           </>
         ) : (

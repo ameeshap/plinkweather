@@ -29,7 +29,7 @@ const WeeklyForecast = (props: WeeklyForecastProps) => {
                   key={index}
                   className="min-w-[150px] rounded-lg bg-tempplum p-2 text-center"
                 >
-                  <p className="font-Inter">{day.day}</p>
+                  <p className="font-Inter font-bold">{day.day}</p>
                   <img
                     src={day.precipitation}
                     className="medium-svg mx-auto"

@@ -8,7 +8,7 @@ const Activity: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
 
   const dataStructure = new Map()
-  dataStructure.set(201, '../src/assets/cloud_lightning_heavyrain.svg')
+  dataStructure.set(201, '../public/assets/cloud_lightning_heavyrain.svg')
   //... Add all other mappings here
 
   const tempRanges = new Map([
@@ -50,14 +50,14 @@ const Activity: React.FC = () => {
   ])
 
   const clothingIcons = new Map([
-    [[-40, 30], '../src/assets/socold.svg'],
-    [[31, 40], '../src/assets/wintercoat.svg'],
-    [[41, 50], '../src/assets/puffer.svg'],
-    [[51, 60], '../src/assets/sweater.svg'],
-    [[61, 70], '../src/assets/lightlayer.svg'],
-    [[71, 80], '../src/assets/tankandshorts.svg'],
-    [[81, 90], '../src/assets/shortshorts.svg'],
-    [[91, 120], '../src/assets/icedbev.svg'],
+    [[-40, 30], '../public/assets/socold.svg'],
+    [[31, 40], '../public/assets/wintercoat.svg'],
+    [[41, 50], '../public/assets/puffer.svg'],
+    [[51, 60], '../public/assets/sweater.svg'],
+    [[61, 70], '../public/assets/lightlayer.svg'],
+    [[71, 80], '../public/assets/tankandshorts.svg'],
+    [[81, 90], '../public/assets/shortshorts.svg'],
+    [[91, 120], '../public/assets/icedbev.svg'],
   ])
 
   const getTempRange = (feelsLike: number): string => {
