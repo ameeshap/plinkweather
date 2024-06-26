@@ -39,7 +39,7 @@ export type locationData = {
   temp: number
   wind: number
   humidity: number
-  feels_like: number
+  feels_like: string
   visibility: number
   currWeath: number
 }
@@ -127,7 +127,7 @@ export const fetchLocationData = async (
       temp: Math.round(weatherData.main.temp),
       wind: Math.round(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
-      feels_like: Math.round(weatherData.main.feels_like),
+      feels_like: new Date(weatherData.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
       visibility: weatherData.visibility,
     }
   } else if (latitude !== undefined && longitude !== undefined) {
@@ -146,7 +146,7 @@ export const fetchLocationData = async (
       temp: Math.round(weatherData.main.temp),
       wind: Math.round(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
-      feels_like: Math.floor(weatherData.main.feels_like),
+      feels_like:new Date(weatherData.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
       visibility: weatherData.visibility,
     }
   } else {
@@ -243,7 +243,7 @@ const locationStore: StateCreator<
         ...location,
         temp: Math.round(data.main.temp),
         humidity: data.main.humidity,
-        feels_like: Math.round(data.main.feels_like),
+        feels_like:  new Date(data.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
         wind: Math.round(data.wind.speed),
         visibility: data.visibility,
       }
@@ -271,7 +271,7 @@ const locationStore: StateCreator<
             ...location,
             temp: Math.round(data.main.temp),
             humidity: data.main.humidity,
-            feels_like: Math.round(data.main.feels_like),
+            feels_like: new Date(data.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
             wind: Math.round(data.wind.speed),
             visibility: data.visibility,
           }

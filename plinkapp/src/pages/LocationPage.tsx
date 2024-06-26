@@ -125,9 +125,9 @@ const LocationPage = (props: LocationProps) => {
                 color="bg-tempperi"
               ></FeatureWeatherCard>
               <FeatureWeatherCard
-                img_src="../src/assets/thermometer.svg"
-                condition="Feels Like"
-                value={`${selectedLocation.feels_like}°F`}
+                img_src="../src/assets/sunset.svg"
+                condition="Sunset"
+                value={`${selectedLocation.feels_like}`}
                 left="20px"
                 top="980px"
                 color="bg-tempplum"
