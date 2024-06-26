@@ -16,7 +16,6 @@ const WeeklyForecast = (props: WeeklyForecastProps) => {
       setForecast(data)
     )
     setLoading(false)
-    console.log(forecast)
   }, [props.lat, props.long])
 
   return (

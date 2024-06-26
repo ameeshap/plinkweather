@@ -13,7 +13,6 @@ const HourlyForecast = (props: HourlyForecastProps) => {
   useEffect(() => {
     fetchHourlyWeatherData(props.lat, props.long).then((data) => setHours(data))
     setLoading(false)
-    console.log(hours)
   }, [props.lat, props.long])
 
   return (

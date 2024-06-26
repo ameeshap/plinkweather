@@ -37,7 +37,7 @@ const Activity: React.FC = () => {
     ['Snow', ' Time to build a snowman or stay warm by a fire!'],
     ['Thunderstorm', ' Stay safe from the thunderstorm!'],
     ['Clear', ' Clear skies await!'],
-    ['Drizzle', ' Also, grab a raincoat if you’ll be outside!'],
+    ['Drizzle', " Also, grab a raincoat if you'll be outside!"],
     ['Tornado', ' Find safety and stay there!'],
     ['Dust', ' Be weary of the dust!'],
     ['Mist', ' Prepare for some mist!'],
@@ -86,7 +86,7 @@ const Activity: React.FC = () => {
     const fetchWeatherData = async (latitude: number, longitude: number) => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=1&units=imperial&appid=925cea5983a4d4da4ea3ffa502d82252`
+          `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=1&units=imperial&appid=${process.env.OPENWEATHER_API_KEY}`
         )
 
         const feelsLike = Math.floor(response.data.list[0].feels_like.day)
