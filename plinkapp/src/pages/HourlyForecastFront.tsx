@@ -26,7 +26,7 @@ const HourlyForecast: React.FC<HourlyForecastProps> = ({ hours }) => {
             <p className="text-black-500 font-inter text-sm">{hour.temp}°F</p>
             <div className="text-black-500 flex items-center font-inter text-sm">
               <img
-                src="../src/assets/wind.svg"
+                src="/assets/wind.svg"
                 alt="Wind icon"
                 className="mr-1 h-4 w-4" // Adjust width and height as needed
               />
