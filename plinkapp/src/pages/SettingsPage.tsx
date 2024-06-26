@@ -22,7 +22,7 @@ const FormSchema = z.object({
 
 export function SwitchForm() {
   const setSevereWeather = useSettingsStore((state) => state.setSevereWeather)
-  // const severeWeather = useSettingsStore((state) => state.severeWeather)
+  const severeWeather = useSettingsStore((state) => state.severeWeather)
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -34,7 +34,7 @@ export function SwitchForm() {
   const onSubmit = (data: z.infer<typeof FormSchema>) => {
     // Perform any action you want with the form data
     console.log('Form submitted with data:', data)
-    if (data.severe_weather?.valueOf) setSevereWeather(true)
+    if (data.severe_weather) setSevereWeather(true)
     else setSevereWeather(false)
     // You can add more actions here, such as API calls or displaying a message
   }
@@ -69,7 +69,7 @@ export function SwitchForm() {
                   </div>
                   <FormControl>
                     <Switch
-                      checked={field.value}
+                      defaultChecked={severeWeather}
                       onCheckedChange={(value) =>
                         handleSwitchChange(field, value)
                       }

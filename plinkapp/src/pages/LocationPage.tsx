@@ -21,9 +21,9 @@ interface LocationProps {
   currentLoc: boolean
 }
 
-function alertToast(e: any) {
-  toast(e.target, {
-    duration: 4000,
+function alertToast(msg: any) {
+  toast(msg.name + '\n\n' + msg.description.replace(/(\r\n|\n|\r)/gm, ''), {
+    duration: 10000,
     position: 'top-center',
   })
 }
@@ -63,15 +63,14 @@ const LocationPage = (props: LocationProps) => {
   }
 
   useEffect(() => {
-    console.log(severeWeather, selectedLocation, isLoading)
     const fetchAlerts = async () => {
-      if (severeWeather && selectedLocation && !isLoading) {
+      console.log(severeWeather)
+      if (severeWeather == true && selectedLocation && !isLoading) {
         const value = await fetchExtremeWeatherAlerts(
           selectedLocation?.lat,
           selectedLocation?.long
         )
-        console.log('test')
-        console.log(value)
+        alertToast(value)
       }
     }
     fetchAlerts()
