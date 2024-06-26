@@ -14,7 +14,7 @@ const Clothing: React.FC<Today> = ({
   pics,
 }) => {
   return (
-    <div className="relative flex min-w-[150px] rounded-lg bg-tempgreen p-4">
+    <div className="relative flex w-screen rounded-lg bg-tempgreen p-4">
       <div className="flex w-full flex-col items-start">
         <div className="absolute left-2 top-2">
           <p className="font-Inter text-medium">Feels Like:</p>
