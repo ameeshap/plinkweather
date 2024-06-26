@@ -1,10 +1,10 @@
 import Navbar from '@/components/Navbar.tsx'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 import FeatureWeatherCard from '@/components/FeatureWeatherCard'
 import LocationCard from '@/components/LocationCard'
-import Banner from '@/components/Banner'
 import MapCard from '@/components/card/MapCard'
 
 // ? Type and data from localStorage store
@@ -13,27 +13,28 @@ import useLocationStore from '@/components/store'
 import HourlyForecast from '@/components/HourlyForecast'
 import WeeklyWeather from '@/components/WeeklyForecast'
 import weatherIcons from '@/components/weatherIcons'
+import { fetchExtremeWeatherAlerts, useSettingsStore } from '@/components/store'
 
 import Activity from '@/components/SuggestionBack'
-import Clothing from '@/components/SuggestionFront'
 
 interface LocationProps {
   currentLoc: boolean
 }
 
-const LocationPage = (props: LocationProps) => {
-  // Controlling weather alerts
-  const [showBanner, setShowBanner] = useState(false)
-  const [bannerProps, setBannerProps] = useState({
-    message: '',
-    type: '',
-    onClose: () => {},
+function alertToast(e: any) {
+  toast(e.target, {
+    duration: 4000,
+    position: 'top-center',
   })
+}
+
+const LocationPage = (props: LocationProps) => {
   const fetchCurrentLoc = useLocationStore(
     (state) => state.fetchCurrentLocation
   )
 
   const [selectedLocation, setSelectedLocation] = useState<locationData>()
+  const severeWeather = useSettingsStore((state) => state.severeWeather)
 
   // Import city's name from the URL
   const { cityName } = useParams<{ cityName: string }>()
@@ -46,17 +47,13 @@ const LocationPage = (props: LocationProps) => {
   useEffect(() => {
     const fetchLocation = async () => {
       if (props.currentLoc) {
-        console.log('currentLoc')
         const value = await fetchCurrentLoc()
         setSelectedLocation(value)
         setIsLoading(false)
-        console.log(value)
       } else if (city && !props.currentLoc) {
-        console.log('customLoc')
         const value = await fetchLocationData(city)
         setSelectedLocation(value)
         setIsLoading(false)
-        console.log(value)
       }
     }
     fetchLocation()
@@ -65,93 +62,113 @@ const LocationPage = (props: LocationProps) => {
     return weatherIcons.get(weatherCode) || '../src/assets/default_icon.svg'
   }
 
+  useEffect(() => {
+    console.log(severeWeather, selectedLocation, isLoading)
+    const fetchAlerts = async () => {
+      if (severeWeather && selectedLocation && !isLoading) {
+        const value = await fetchExtremeWeatherAlerts(
+          selectedLocation?.lat,
+          selectedLocation?.long
+        )
+        console.log('test')
+        console.log(value)
+      }
+    }
+    fetchAlerts()
+  }, [isLoading])
+
   return (
     <>
-      {showBanner && <Banner {...bannerProps} />}
-      <div className="mx-auto flex min-h-screen flex-col items-center justify-center bg-bgwhite">
+      {/* {showBanner && <Banner {...bannerProps} />} */}
+      <div className="flex min-h-screen w-screen flex-col items-center justify-center overflow-x-hidden bg-bgwhite pb-20">
         {/* Content For Page */}
-        {/* <button onClick={showError}>Show Error</button> */}
+        {/* App Name/Title */}
 
-        <div
-          className="flex min-h-screen min-w-96 flex-col items-center justify-center bg-bgwhite shadow-xl"
-          style={{
-            position: 'relative',
-            width: '393px',
-            height: '1793px',
-          }}
-        >
-          {!isLoading && selectedLocation ? (
-            <div className="flex flex-col items-center justify-center space-y-4">
-              <LocationCard
-                city={selectedLocation.city}
-                img_src={getIconPath(selectedLocation.currWeath)}
-                temp={selectedLocation.temp || 0}
+        {!isLoading && selectedLocation ? (
+          <>
+            <div className="ml-6 mt-4 flex h-auto w-screen flex-row gap-3 pb-4">
+              <img
+                src="/assets/sing_waterdrop.svg"
+                className="my-auto h-8 w-8"
               />
+              <h1 className="my-auto h-auto w-screen text-left font-inter text-[2rem] font-semibold italic">
+                Plink!
+              </h1>
+            </div>
+            <div className="flex h-full w-screen flex-col items-center">
+              <div className="h-auto w-80 pb-4"> {/* Adjust the padding bottom here */}
+                <LocationCard
+                  city={selectedLocation.city}
+                  img_src={getIconPath(selectedLocation.currWeath)}
+                  temp={selectedLocation.temp || 0}
+                />
+              </div>
               {/* Hourly Weather Carousel */}
-              <HourlyForecast
-                lat={selectedLocation.lat}
-                long={selectedLocation.long}
-              />
-
-             <Activity></Activity>
-
+              <div className="mb-2"> {/* You can adjust the margin bottom here */}
+                <HourlyForecast
+                  lat={selectedLocation.lat}
+                  long={selectedLocation.long}
+                />
+              </div>
+              <div className="mb-4">
+              <Activity />
               {/* Weekly Weather Carousel */}
+           
               <WeeklyWeather
                 lat={selectedLocation.lat}
                 long={selectedLocation.long}
               />
-              <FeatureWeatherCard
-                img_src="../src/assets/waves.svg"
-                condition="Humidity"
-                value={`${selectedLocation.humidity}%`}
-                left="20px"
-                top="1150px"
-                color="bg-tempblue"
-              ></FeatureWeatherCard>
-              <FeatureWeatherCard
-                img_src="../src/assets/wind.svg"
-                condition="Wind Speed"
-                value={`${selectedLocation.wind} mph`}
-                left="200px"
-                top="1150px"
-                color="bg-tempceladon"
-              ></FeatureWeatherCard>
-              <FeatureWeatherCard
-                img_src="../src/assets/sing_waterdrop.svg"
-                condition="Visibility"
-                value={`${selectedLocation.visibility / 1000} km`}
-                left="200px"
-                top="980px"
-                color="bg-tempperi"
-              ></FeatureWeatherCard>
-              <FeatureWeatherCard
-                img_src="../src/assets/sunset.svg"
-                condition="Sunset"
-                value={`${selectedLocation.feels_like}`}
-                left="20px"
-                top="980px"
-                color="bg-tempplum"
-              ></FeatureWeatherCard>
+              <div className="grid grid-cols-2 gap-4 p-5">
+                <FeatureWeatherCard
+                  img_src="../public/assets/waves.svg"
+                  condition="Humidity"
+                  value={`${selectedLocation.humidity}%`}
+                  color="bg-tempceladon"
+                />
+                <FeatureWeatherCard
+                  img_src="../public/assets/wind.svg"
+                  condition="Wind Speed"
+                  value={`${selectedLocation.wind} mph`}
+                  color="bg-tempblue"
+                />
+                <FeatureWeatherCard
+                  img_src="../public/assets/sing_waterdrop.svg"
+                  condition="Visibility"
+                  value={`${selectedLocation.visibility / 1000} km`}
+                  color="bg-tempperi"
+                />
+                <FeatureWeatherCard
+                  img_src="../public/assets/sunset.svg"
+                  condition="Sunset"
+                  value={`${selectedLocation.feels_like}`}
+                  color="bg-tempplum"
+                />
+                   </div>
+              </div>
+              <div className="mb-4">
               <MapCard
                 height="341px"
-                width="347px"
+                width="385px"
                 borderR="20px"
-                top="350px"
+                top="0px"
                 z="0"
-              ></MapCard>
-            </div>
-          ) : (
-            <p>Loading</p>
-          )}
-        </div>
 
-        {props.currentLoc ? (
-          <Navbar selected="currentLoc" />
+              />
+              </div>
+            </div>
+          </>
         ) : (
-          <Navbar selected="search" />
-          // Insert search page formatting here
+          <p>Loading</p>
         )}
       </div>
+
+      {props.currentLoc ? (
+        <Navbar selected="currentLoc" />
+      ) : (
+        <Navbar selected="search" />
+        // Insert search page formatting here
+      )}
+      {/* </div> */}
     </>
   )
 }

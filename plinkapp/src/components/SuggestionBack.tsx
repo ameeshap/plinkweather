@@ -8,7 +8,7 @@ const Activity: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
 
   const dataStructure = new Map()
-  dataStructure.set(201, '../src/assets/cloud_lightning_heavyrain.svg')
+  dataStructure.set(201, '../public/assets/cloud_lightning_heavyrain.svg')
   //... Add all other mappings here
 
   const tempRanges = new Map([
@@ -37,7 +37,7 @@ const Activity: React.FC = () => {
     ['Snow', ' Time to build a snowman or stay warm by a fire!'],
     ['Thunderstorm', ' Stay safe from the thunderstorm!'],
     ['Clear', ' Clear skies await!'],
-    ['Drizzle', ' Also, grab a raincoat if you’ll be outside!'],
+    ['Drizzle', " Also, grab a raincoat if you'll be outside!"],
     ['Tornado', ' Find safety and stay there!'],
     ['Dust', ' Be weary of the dust!'],
     ['Mist', ' Prepare for some mist!'],
@@ -50,14 +50,14 @@ const Activity: React.FC = () => {
   ])
 
   const clothingIcons = new Map([
-    [[-40, 30], '../src/assets/socold.svg'],
-    [[31, 40], '../src/assets/wintercoat.svg'],
-    [[41, 50], '../src/assets/puffer.svg'],
-    [[51, 60], '../src/assets/sweater.svg'],
-    [[61, 70], '../src/assets/lightlayer.svg'],
-    [[71, 80], '../src/assets/tankandshorts.svg'],
-    [[81, 90], '../src/assets/shortshorts.svg'],
-    [[91, 120], '../src/assets/icedbev.svg'],
+    [[-40, 30], '../public/assets/socold.svg'],
+    [[31, 40], '../public/assets/wintercoat.svg'],
+    [[41, 50], '../public/assets/puffer.svg'],
+    [[51, 60], '../public/assets/sweater.svg'],
+    [[61, 70], '../public/assets/lightlayer.svg'],
+    [[71, 80], '../public/assets/tankandshorts.svg'],
+    [[81, 90], '../public/assets/shortshorts.svg'],
+    [[91, 120], '../public/assets/icedbev.svg'],
   ])
 
   const getTempRange = (feelsLike: number): string => {
@@ -86,7 +86,7 @@ const Activity: React.FC = () => {
     const fetchWeatherData = async (latitude: number, longitude: number) => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=1&units=imperial&appid=925cea5983a4d4da4ea3ffa502d82252`
+          `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=1&units=imperial&appid=${process.env.OPENWEATHER_API_KEY}`
         )
 
         const feelsLike = Math.floor(response.data.list[0].feels_like.day)

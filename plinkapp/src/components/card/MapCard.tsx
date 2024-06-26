@@ -1,10 +1,10 @@
-import React, { useEffect, useState, createContext } from 'react'
+import React, { useEffect, useState } from 'react'
 // need to do pnpm install with these components
 import { LayersControl, MapContainer, TileLayer, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { LatLngExpression } from 'leaflet'
 
- const apiKey = process.env.VITE_OPENWEATHER_API_KEY
+const apiKey = 'e0c44f38d6b3f27486ac5df12f15dfbc'
 const temperatureLayer = 'temp_new'
 const precipitationLayer = 'precipitation_new'
 const cloudLayer = 'clouds_new'
@@ -38,11 +38,17 @@ interface MapCardProps {
   width: string
   borderR: string
 
-  top: number|string
+  top: number | string
   z: string
 }
 
-const MapCard: React.FC<MapCardProps> = ({ height, width, borderR, z, top }) => {
+const MapCard: React.FC<MapCardProps> = ({
+  height,
+  width,
+  borderR,
+  z,
+  top,
+}) => {
   const [userLocation, setLocation] = useState<{
     latitude: number
     longitude: number

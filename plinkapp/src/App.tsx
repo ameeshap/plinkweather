@@ -4,7 +4,7 @@ import MapPage from '@/pages/MapPage'
 import ErrorPage from './pages/ErrorPage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
-import HourlyForecast from './pages/HourlyForecastFront'
+import HourlyWeather from './components/HourlyForecastBack'
 
 import './index.css'
 import SettingsPage from './pages/SettingsPage'

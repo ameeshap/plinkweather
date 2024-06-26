@@ -215,6 +215,19 @@ export const fetchWeeklyWeatherData = async (
   }
 }
 
+export const fetchExtremeWeatherAlerts = async (
+  latitude: number,
+  longitude: number
+) => {
+  const API_url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&exclude=current,minutely,hourly,daily,alerts&appid=${OPENWEATHER_API_KEY}`
+  const response = await fetch(API_url)
+  if (!response.ok) throw new Error('Failed to fetch weather alerts')
+
+  const data = await response.json()
+  console.log(data.alerts)
+  return data.alerts || []
+}
+
 const locationStore: StateCreator<
   locationState,
   [['zustand/persist', unknown]]

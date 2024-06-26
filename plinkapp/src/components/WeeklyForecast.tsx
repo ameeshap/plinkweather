@@ -16,7 +16,6 @@ const WeeklyForecast = (props: WeeklyForecastProps) => {
       setForecast(data)
     )
     setLoading(false)
-    console.log(forecast)
   }, [props.lat, props.long])
 
   return (
@@ -30,7 +29,7 @@ const WeeklyForecast = (props: WeeklyForecastProps) => {
                   key={index}
                   className="min-w-[150px] rounded-lg bg-tempplum p-2 text-center"
                 >
-                  <p className="font-Inter">{day.day}</p>
+                  <p className="font-Inter font-bold">{day.day}</p>
                   <img
                     src={day.precipitation}
                     className="medium-svg mx-auto"
@@ -40,7 +39,7 @@ const WeeklyForecast = (props: WeeklyForecastProps) => {
                   <p className="font-Inter">High: {day.maxtemp}°F</p>
                   <div className="text-black-500 flex items-center justify-center font-inter text-sm">
                     <img
-                      src="../src/assets/sing_waterdrop.svg"
+                      src="/assets/sing_waterdrop.svg"
                       alt="Wind icon"
                       className="mr-1 h-4 w-4" // Adjust width and height as needed
                     />
