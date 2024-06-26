@@ -1,37 +1,22 @@
-import React from 'react'
-
 interface WeatherCardProps {
   city: string
   temp: number
   img_src: string
 }
 
-const WeatherCard: React.FC<WeatherCardProps> = ({ city, temp, img_src }) => {
+const WeatherCard = (props: WeatherCardProps) => {
   return (
-    <div
-      className="card items-center justify-between bg-tempblue shadow-xl"
-      style={{
-        position: 'absolute',
-        width: '320px',
-        height: '292px',
-        top: '98px',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: '20px',
-      }}
-    >
-      <h2 className="card-title font-inter">{city} </h2>
-      <figure>
+    <div className="flex h-auto w-auto flex-grow flex-col items-center justify-between rounded-2xl bg-tempblue px-10 shadow-xl">
+      <div className="flex flex-col gap-4">
+        <h2 className="card-title pt-6 font-inter text-4xl">{props.city}</h2>
         <img
-          src={img_src}
-          style={{
-            width: '170px',
-            height: '170px',
-          }}
-        ></img>
-      </figure>
-      <h2 className="card-title font-inter">
-        {temp} {'°'}
-      </h2>
+          src={props.img_src}
+          className="mx-auto max-h-[5rem] max-w-[5rem]"
+        />
+        <h2 className="mx-auto pb-6 pl-2 pt-4 font-inter text-3xl font-medium">
+          {props.temp}&deg;
+        </h2>
+      </div>
     </div>
   )
 }

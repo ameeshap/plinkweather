@@ -65,88 +65,84 @@ const LocationPage = (props: LocationProps) => {
   return (
     <>
       {/* {showBanner && <Banner {...bannerProps} />} */}
-      <div className="mx-auto flex min-h-screen flex-col items-center justify-center bg-bgwhite">
+      <div className="flex min-h-screen w-screen flex-col items-center justify-center overflow-x-hidden bg-bgwhite">
         {/* Content For Page */}
-        {/* <button onClick={showError}>Show Error</button> */}
+        {/* App Name/Title */}
+        <div className="ml-6 mt-4 flex h-auto w-screen flex-row gap-3 pb-4">
+          <img src="/assets/sing_waterdrop.svg" className="my-auto h-8 w-8" />
+          <h1 className="my-auto h-auto w-screen text-left font-inter text-[2rem] font-semibold italic">
+            Plink!
+          </h1>
+        </div>
 
-        <div
-          className="flex min-h-screen min-w-96 flex-col items-center justify-center bg-bgwhite shadow-xl"
-          style={{
-            position: 'relative',
-            width: '393px',
-            height: '1793px',
-          }}
-        >
-          {!isLoading && selectedLocation ? (
-            <div className="flex flex-col items-center justify-center space-y-4">
+        {!isLoading && selectedLocation ? (
+          <div className="flex h-full w-screen flex-col items-center">
+            <div className="h-auto w-80 pb-10">
               <LocationCard
                 city={selectedLocation.city}
                 img_src={getIconPath(selectedLocation.currWeath)}
                 temp={selectedLocation.temp || 0}
               />
-              {/* Hourly Weather Carousel */}
-              <HourlyForecast
-                lat={selectedLocation.lat}
-                long={selectedLocation.long}
-              />
+            </div>
+            {/* Hourly Weather Carousel */}
+            <HourlyForecast
+              lat={selectedLocation.lat}
+              long={selectedLocation.long}
+            />
 
-              {/* Weekly Weather Carousel */}
+            {/* Weekly Weather Carousel */}
+            <div className="pb-10">
               <WeeklyWeather
                 lat={selectedLocation.lat}
                 long={selectedLocation.long}
               />
+            </div>
+            <div className="mx-auto flex h-auto w-full flex-row flex-wrap justify-center gap-6">
               <FeatureWeatherCard
                 img_src="/assets/waves.svg"
                 condition="Humidity"
                 value={`${selectedLocation.humidity}%`}
-                left="20px"
-                top="1150px"
                 color="bg-tempblue"
-              ></FeatureWeatherCard>
+              />
               <FeatureWeatherCard
                 img_src="/assets/wind.svg"
                 condition="Wind Speed"
                 value={`${selectedLocation.wind} mph`}
-                left="200px"
-                top="1150px"
                 color="bg-tempceladon"
-              ></FeatureWeatherCard>
+              />
               <FeatureWeatherCard
                 img_src="/assets/sing_waterdrop.svg"
                 condition="Visibility"
                 value={`${selectedLocation.visibility / 1000} km`}
-                left="200px"
-                top="980px"
                 color="bg-tempperi"
-              ></FeatureWeatherCard>
+              />
               <FeatureWeatherCard
                 img_src="/assets/thermometer.svg"
                 condition="Feels Like"
                 value={`${selectedLocation.feels_like}°F`}
-                left="20px"
-                top="980px"
                 color="bg-tempplum"
-              ></FeatureWeatherCard>
-              <MapCard
-                height="341px"
-                width="347px"
-                borderR="20px"
-                top="400px"
-                z="0"
-              ></MapCard>
+              />
             </div>
-          ) : (
-            <p>Loading</p>
-          )}
-        </div>
-
-        {props.currentLoc ? (
-          <Navbar selected="currentLoc" />
+            <MapCard
+              height="341px"
+              width="347px"
+              borderR="20px"
+              top="400px"
+              z="0"
+            />
+          </div>
         ) : (
-          <Navbar selected="search" />
-          // Insert search page formatting here
+          <p>Loading</p>
         )}
       </div>
+
+      {props.currentLoc ? (
+        <Navbar selected="currentLoc" />
+      ) : (
+        <Navbar selected="search" />
+        // Insert search page formatting here
+      )}
+      {/* </div> */}
     </>
   )
 }
