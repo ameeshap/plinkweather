@@ -82,10 +82,9 @@ const LocationPage = (props: LocationProps) => {
       {/* {showBanner && <Banner {...bannerProps} />} */}
       <div className="flex min-h-screen w-screen flex-col items-center justify-center overflow-x-hidden bg-bgwhite pb-20">
         {/* Content For Page */}
-        {/* App Name/Title */}
-
         {!isLoading && selectedLocation ? (
           <>
+            {/* App Name/Title */}
             <div className="ml-6 mt-4 flex h-auto w-screen flex-row gap-3 pb-4">
               <img
                 src="/assets/sing_waterdrop.svg"

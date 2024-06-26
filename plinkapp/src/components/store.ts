@@ -53,6 +53,7 @@ type locationState = {
   updateLocationData: (city: string) => void
   updateAllLocationData: () => void
   fetchCurrentLocation: () => Promise<locationData>
+  isLocationInStore: (city: string) => boolean
 }
 
 // ? Type definitions for settings
@@ -127,7 +128,10 @@ export const fetchLocationData = async (
       temp: Math.round(weatherData.main.temp),
       wind: Math.round(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
-      feels_like: new Date(weatherData.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
+      feels_like: new Date(weatherData.sys.sunset * 1000).toLocaleString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+      }),
       visibility: weatherData.visibility,
     }
   } else if (latitude !== undefined && longitude !== undefined) {
@@ -146,7 +150,10 @@ export const fetchLocationData = async (
       temp: Math.round(weatherData.main.temp),
       wind: Math.round(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
-      feels_like:new Date(weatherData.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
+      feels_like: new Date(weatherData.sys.sunset * 1000).toLocaleString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+      }),
       visibility: weatherData.visibility,
     }
   } else {
@@ -261,7 +268,10 @@ const locationStore: StateCreator<
         ...location,
         temp: Math.round(data.main.temp),
         humidity: data.main.humidity,
-        feels_like:  new Date(data.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
+        feels_like: new Date(data.sys.sunset * 1000).toLocaleString([], {
+          hour: 'numeric',
+          minute: '2-digit',
+        }),
         wind: Math.round(data.wind.speed),
         visibility: data.visibility,
       }
@@ -289,7 +299,10 @@ const locationStore: StateCreator<
             ...location,
             temp: Math.round(data.main.temp),
             humidity: data.main.humidity,
-            feels_like: new Date(data.sys.sunset * 1000).toLocaleString([],{hour: 'numeric', minute: '2-digit'}),
+            feels_like: new Date(data.sys.sunset * 1000).toLocaleString([], {
+              hour: 'numeric',
+              minute: '2-digit',
+            }),
             wind: Math.round(data.wind.speed),
             visibility: data.visibility,
           }
@@ -327,6 +340,10 @@ const locationStore: StateCreator<
         )
       }
     })
+  },
+  isLocationInStore: (city: string): boolean => {
+    const state = get()
+    return state.locations.some((location) => location.city === city)
   },
 })
 
