@@ -1,9 +1,7 @@
 import Navbar from '@/components/Navbar.tsx'
-//import LocationPage from '@/pages/LocationPage'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import React, { useContext } from 'react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -15,33 +13,53 @@ import {
   FormLabel,
 } from '@/components/ui/form'
 import { Switch } from '@/components/ui/switch'
-import { toast } from '@/components/ui/use-toast'
+// import { toast } from '@/components/ui/use-toast'
+import { useSettingsStore } from '@/components/store'
 
 const FormSchema = z.object({
-  marketing_emails: z.boolean().default(false).optional(),
-  security_emails: z.boolean(),
+  severe_weather: z.boolean().default(false).optional(),
 })
 
 export function SwitchForm() {
+  const setSevereWeather = useSettingsStore((state) => state.setSevereWeather)
+  const severeWeather = useSettingsStore((state) => state.severeWeather)
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      security_emails: true,
+      severe_weather: true,
     },
   })
 
+  // Define an onSubmit handler
+  const onSubmit = (data: z.infer<typeof FormSchema>) => {
+    // Perform any action you want with the form data
+    console.log('Form submitted with data:', data)
+    if (data.severe_weather?.valueOf) setSevereWeather(true)
+    else setSevereWeather(false)
+    // You can add more actions here, such as API calls or displaying a message
+  }
+
+  // Handler for switch toggle
+  const handleSwitchChange = (field: any, value: boolean) => {
+    field.onChange(value)
+    console.log(field.name, 'Switch toggled:', value)
+    // You can add more actions here
+  }
+
   return (
     <Form {...form}>
-      <form className="w-full space-y-6">
+      <form className="w-full space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
         <div>
-          <h3 className="mb-4 text-lg font-medium">Notifications</h3>
-          <div className="space-y-4">
+          <h3 className="m-5 text-[2rem] font-semibold italic">
+            Notifications
+          </h3>
+          <div className="">
             <FormField
               control={form.control}
-              name="marketing_emails"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
+              name="severe_weather"
+              render={({ field }: any) => (
+                <FormItem className="mx-2 flex flex-row items-center justify-between rounded-lg border p-4">
+                  <div className="">
                     <FormLabel className="text-base">
                       Severe Weather Alerts
                     </FormLabel>
@@ -52,7 +70,9 @@ export function SwitchForm() {
                   <FormControl>
                     <Switch
                       checked={field.value}
-                      onCheckedChange={field.onChange}
+                      onCheckedChange={(value) =>
+                        handleSwitchChange(field, value)
+                      }
                     />
                   </FormControl>
                 </FormItem>
@@ -60,6 +80,9 @@ export function SwitchForm() {
             />
           </div>
         </div>
+        <Button type="submit" className="ml-2">
+          Save Changes
+        </Button>
       </form>
       <Navbar selected="settings" />
     </Form>

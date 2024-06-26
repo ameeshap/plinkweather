@@ -1,0 +1,3 @@
+"test": "vitest",
+"test:coverage": "vitest run --coverage"
+

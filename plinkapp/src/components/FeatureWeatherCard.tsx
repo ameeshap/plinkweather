@@ -30,14 +30,14 @@ const FeatureWeatherCard: React.FC<FeatureWeatherCardProps> = ({
       }}
     >
       <h2 className="card-title items-center font-inter">
-      <p>{condition}</p>
+        <p>{condition}</p>
       </h2>
       <p>{value}</p>
 
       <figure className="w-133 h-133">
         <img
           src={img_src}
-          className="h-full w-full "
+          className="h-full w-full"
           style={{
             width: '35px',
             height: '35px',
