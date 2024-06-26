@@ -14,6 +14,9 @@ import HourlyForecast from '@/components/HourlyForecast'
 import WeeklyWeather from '@/components/WeeklyForecast'
 import weatherIcons from '@/components/weatherIcons'
 
+import Activity from '@/components/SuggestionBack'
+import Clothing from '@/components/SuggestionFront'
+
 interface LocationProps {
   currentLoc: boolean
 }
@@ -90,6 +93,8 @@ const LocationPage = (props: LocationProps) => {
               long={selectedLocation.long}
             />
 
+            <Activity></Activity>
+
             {/* Weekly Weather Carousel */}
             <div className="pb-10">
               <WeeklyWeather
@@ -127,7 +132,7 @@ const LocationPage = (props: LocationProps) => {
               height="341px"
               width="347px"
               borderR="20px"
-              top="400px"
+              top="350px"
               z="0"
             />
           </div>

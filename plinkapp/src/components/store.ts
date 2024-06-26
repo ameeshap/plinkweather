@@ -124,10 +124,10 @@ export const fetchLocationData = async (
       lat,
       long,
       currWeath: weatherData.weather[0].id,
-      temp: Math.floor(weatherData.main.temp),
-      wind: Math.floor(weatherData.wind.speed),
+      temp: Math.round(weatherData.main.temp),
+      wind: Math.round(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
-      feels_like: Math.floor(weatherData.main.feels_like),
+      feels_like: Math.round(weatherData.main.feels_like),
       visibility: weatherData.visibility,
     }
   } else if (latitude !== undefined && longitude !== undefined) {
@@ -143,8 +143,8 @@ export const fetchLocationData = async (
       lat: latitude,
       long: longitude,
       currWeath: weatherData.weather[0].id,
-      temp: Math.floor(weatherData.main.temp),
-      wind: Math.floor(weatherData.wind.speed),
+      temp: Math.round(weatherData.main.temp),
+      wind: Math.round(weatherData.wind.speed),
       humidity: weatherData.main.humidity,
       feels_like: Math.floor(weatherData.main.feels_like),
       visibility: weatherData.visibility,
@@ -170,10 +170,10 @@ export const fetchHourlyWeatherData = async (
           hour: 'numeric',
           minute: '2-digit',
         }),
-        temp: response.data.list[i].main.temp,
-        windspeed: response.data.list[i].wind.speed,
+        temp: Math.round(response.data.list[i].main.temp),
+        windspeed: Math.round(response.data.list[i].wind.speed),
         precipitation: weatherIcons.get(
-          response.data.list[i].weather[0].id
+          Math.round(response.data.list[i].weather[0].id)
         ) as string,
       })
     }
@@ -200,12 +200,12 @@ export const fetchWeeklyWeatherData = async (
           'en-US',
           { weekday: 'long' }
         ),
-        mintemp: Math.floor(response.data.list[i].temp.min),
-        maxtemp: Math.floor(response.data.list[i].temp.max),
+        mintemp: Math.round(response.data.list[i].temp.min),
+        maxtemp: Math.round(response.data.list[i].temp.max),
         precipitation: weatherIcons.get(
-          response.data.list[i].weather[0].id
+          Math.round(response.data.list[i].weather[0].id)
         ) as string,
-        rainchance: response.data.list[i].rain || 0,
+        rainchance: Math.round(response.data.list[i].rain) || 0,
       })
     }
 
@@ -241,10 +241,10 @@ const locationStore: StateCreator<
       )
       const updatedLocation = {
         ...location,
-        temp: Math.floor(data.main.temp),
+        temp: Math.round(data.main.temp),
         humidity: data.main.humidity,
-        feels_like: Math.floor(data.main.feels_like),
-        wind: Math.floor(data.wind.speed),
+        feels_like: Math.round(data.main.feels_like),
+        wind: Math.round(data.wind.speed),
         visibility: data.visibility,
       }
 
@@ -269,10 +269,10 @@ const locationStore: StateCreator<
           )
           return {
             ...location,
-            temp: Math.floor(data.main.temp),
+            temp: Math.round(data.main.temp),
             humidity: data.main.humidity,
-            feels_like: Math.floor(data.main.feels_like),
-            wind: Math.floor(data.wind.speed),
+            feels_like: Math.round(data.main.feels_like),
+            wind: Math.round(data.wind.speed),
             visibility: data.visibility,
           }
         } catch (error) {
