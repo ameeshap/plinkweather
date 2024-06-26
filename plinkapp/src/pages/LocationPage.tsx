@@ -123,25 +123,25 @@ const LocationPage = (props: LocationProps) => {
                 />
                 <div className="grid grid-cols-2 gap-4 p-5">
                   <FeatureWeatherCard
-                    img_src="../public/assets/waves.svg"
+                    img_src="/assets/waves.svg"
                     condition="Humidity"
                     value={`${selectedLocation.humidity}%`}
                     color="bg-tempceladon"
                   />
                   <FeatureWeatherCard
-                    img_src="../public/assets/wind.svg"
+                    img_src="/assets/wind.svg"
                     condition="Wind Speed"
                     value={`${selectedLocation.wind} mph`}
                     color="bg-tempblue"
                   />
                   <FeatureWeatherCard
-                    img_src="../public/assets/sing_waterdrop.svg"
+                    img_src="/assets/sing_waterdrop.svg"
                     condition="Visibility"
                     value={`${selectedLocation.visibility / 1000} km`}
                     color="bg-tempperi"
                   />
                   <FeatureWeatherCard
-                    img_src="../public/assets/sunset.svg"
+                    img_src="/assets/sunset.svg"
                     condition="Sunset"
                     value={`${selectedLocation.feels_like}`}
                     color="bg-tempplum"
