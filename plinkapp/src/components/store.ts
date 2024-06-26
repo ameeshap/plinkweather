@@ -340,7 +340,7 @@ const useLocationStore = create(
 const settingsStore: StateCreator<
   settingsState,
   [['zustand/persist', unknown]]
-> = (set, get) => ({
+> = (set, _) => ({
   severeWeather: false,
   setSevereWeather: (s: boolean) => set({ severeWeather: s }),
 })

@@ -64,7 +64,6 @@ const LocationPage = (props: LocationProps) => {
 
   useEffect(() => {
     const fetchAlerts = async () => {
-      console.log(severeWeather)
       if (severeWeather == true && selectedLocation && !isLoading) {
         const value = await fetchExtremeWeatherAlerts(
           selectedLocation?.lat,
